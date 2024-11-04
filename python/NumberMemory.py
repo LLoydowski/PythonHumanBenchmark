@@ -2,7 +2,7 @@ from Game import *
 
 class NumberMemory(Game):
     def __init__(self):
-        super().__init__("number_memory.txt")
+        super().__init__("../data/number_memory.txt")
 
     def play(self):
         self.score = 5
