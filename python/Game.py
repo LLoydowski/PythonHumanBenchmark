@@ -1,4 +1,5 @@
 from Scoreboard import *
+import os, platform
 
 class Game:
     def __init__(self, fileName):
@@ -8,6 +9,12 @@ class Game:
     
     def play(self):
         pass
+
+    def clear(self):
+        if platform.system() == 'Windows':
+            os.system('cls')
+        else:
+            os.system('clear')
     
     def showScores(self):
         self.scoreboard.printScores()

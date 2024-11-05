@@ -1,19 +1,11 @@
 from Game import *
-import time, random, os, platform
+import time, random
 
 class ReactionTime(Game):
     def __init__(self):
         super().__init__("../data/reaction_time.txt")
         self.__best_time_ms = float('inf')
         self.__scores = []
-    
-
-    def clear(self):
-        if platform.system() == 'Windows':
-            os.system('cls')
-        else:
-            os.system('clear')
-
     
     def averageScore(self):
         result = 0
