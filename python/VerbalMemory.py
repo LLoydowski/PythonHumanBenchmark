@@ -22,6 +22,12 @@ class VerbalMemory(Game):
     def getRandomWord(self):
         return self.__randomWord
 
+    def getLives(self):
+        return self.__lives
+    
+    def getScore(self):
+        return self.__score
+
     def readWords(self, path:str):
         file = open(path, "r")
         content = file.read()
@@ -45,6 +51,14 @@ class VerbalMemory(Game):
             self.__score += 1
             self.__seenWords.append(self.__randomWord)
 
+    def isGameFinnished(self):
+        if self.__lives == 0:
+            return "lost" 
+        
+        if len(self.__seenWords) == len(self.__words):
+            return "won"
+        
+        return ""
 
 # Tests
 
