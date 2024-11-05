@@ -1,22 +1,26 @@
 from Game import *
 import random
 
-class NumberMemory(Game):
+class VerbalMemory(Game):
     def __init__(self):
         super().__init__("../data/number_memory.txt")
         self.__words = []
         self.readWords("data/VM_words.txt")
+        self.reset()
 
-    def play(self):
+    def reset(self):
         self.__score = 0
         self.__lives = 3
-        self.__scoreboard.saveScore(self.score)
+        # self.__scoreboard.saveScore(self.__score)
         self.__randomWord = ""
         self.__seenWords = []
 
-    def getRandomWord(self):
-        randomIndex = random.randint(0, len(self.__words))
+    def generateRandomWord(self):
+        randomIndex = random.randint(0, len(self.__words) - 1)
         self.__randomWord = self.__words[randomIndex]
+
+    def getRandomWord(self):
+        return self.__randomWord
 
     def readWords(self, path:str):
         file = open(path, "r")
@@ -32,6 +36,8 @@ class NumberMemory(Game):
         else:
             self.__score += 1
 
+        print(self.__lives)
+
     def newWord(self):
         if self.__randomWord in self.__seenWords:
             self.__lives -= 1
@@ -42,5 +48,5 @@ class NumberMemory(Game):
 
 # Tests
 
-game = NumberMemory()
+game = VerbalMemory()
 
