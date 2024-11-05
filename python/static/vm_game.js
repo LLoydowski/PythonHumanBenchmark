@@ -10,6 +10,7 @@ form.addEventListener("submit", (e) => {
     xhr.send(JSON.stringify({
         "choose": choose
     }));
+    window.location.reload()
 })
 
 function setChoose(value){
