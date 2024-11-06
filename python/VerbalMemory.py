@@ -3,38 +3,58 @@ import random
 
 class VerbalMemory(Game):
     def __init__(self):
-        super().__init__("../data/number_memory.txt")
+        super().__init__("data/verbal_memory.txt")
         self.__words = []
         self.readWords("data/VM_words.txt")
         self.reset()
 
     def play(self):
-        while self.isGameFinnished() == "":
-            self.clear()
+        self.clear()
 
-            self.generateRandomWord()
+        print("Enter your name: ")
+        playerName = input("> ")
 
-            print(f"{self.__randomWord} \n")
-            print(f"Lives: {self.__lives} | Score: {self.__score} \n")
-            print(self.__score)
+        isRunning = True
+        while isRunning:
+            
+            while self.isGameFinnished() == "":
+                self.clear()
 
-            print("1. Seen | 2. New")
-            userChose = input("> ")
+                self.generateRandomWord()
 
-            while userChose != "2" and userChose != "1":
+                print(f"{self.__randomWord} \n")
+                print(f"Lives: {self.__lives} | Score: {self.__score} \n")
+
+                print("1. Seen | 2. New")
                 userChose = input("> ")
 
-            if userChose == "1":
-                self.seenWord()
-            elif userChose == "2":
-                self.newWord()
+                while userChose != "2" and userChose != "1":
+                    userChose = input("> ")
 
-        print(f"You have {self.isGameFinnished()}")
+                if userChose == "1":
+                    self.seenWord()
+                elif userChose == "2":
+                    self.newWord()
+
+            print(f"You have {self.isGameFinnished()}")
+
+            print("1. Play again | 2. Exit: ")
+            
+            playAgain = input("> ")
+
+            while(playAgain != "1" and playAgain != "2"):
+                playAgain = input("> ")
+
+            if playAgain == "1":
+                game.reset()
+            else:
+                self.scoreboard.saveScore(self.__score)
+                game.reset()
+                isRunning = False
 
     def reset(self):
         self.__score = 0
         self.__lives = 3
-        # self.__scoreboard.saveScore(self.__score)
         self.__randomWord = ""
         self.__seenWords = []
 
