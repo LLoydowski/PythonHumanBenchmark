@@ -107,4 +107,3 @@ class VerbalMemory(Game):
 
 game = VerbalMemory()
 game.play()
-

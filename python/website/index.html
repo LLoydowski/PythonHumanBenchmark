@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post">
+        <input name="data" placeholder="enter data" value="{{ request.form['data']}}">
+        <button type="submit">Ez</button>
+    </form>
+    <script src="{{url_for('static', filename='script.js')}}"></script>
+</body>
+</html>
