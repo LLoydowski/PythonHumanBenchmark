@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash, url_for, make_response
-import VerbalMemory
+import VerbalMemory, userManagement
 
 
 class Server:
@@ -7,6 +7,7 @@ class Server:
         self.__app = Flask(__name__, template_folder="./website")
         self.__vm = VerbalMemory.VerbalMemory()
         self.__vm.generateRandomWord()
+        self.__userManager = userManagement.userManager()
         
     def run(self):
         @self.__app.route('/verbal', methods=["GET", "POST"])
@@ -55,7 +56,23 @@ class Server:
             response.set_cookie("player_name", name)
 
             return response
-        
+
+        @self.__app.route("/signup", methods=["POST", "GET"])
+        def signup():
+            response = render_template("signup.html")
+
+            if request.method == "POST":
+                json = request.get_json()
+
+                name = json["name"]
+                password = json["password"]
+
+                print(f"Name: {name} \nPass: {password}")
+
+                self.__userManager.addUser(name, password)
+
+            return response
+
         @self.__app.route('/', methods=["GET", "POST"])
         def index():
             if request.method == "POST":
@@ -65,7 +82,7 @@ class Server:
                     flash("Data is required")
                     return
                 else:
-                    print(f"Fata: {data}")
+                    print(f"Data: {data}")
 
             return render_template('index.html')
 

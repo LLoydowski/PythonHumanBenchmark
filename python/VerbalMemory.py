@@ -105,5 +105,5 @@ class VerbalMemory(Game):
 
 # Tests
 
-game = VerbalMemory()
-game.play()
+# game = VerbalMemory()
+# game.play()

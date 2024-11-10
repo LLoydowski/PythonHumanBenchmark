@@ -28,6 +28,7 @@ class userManager:
 
     def addUser(self, username: str, password: str) -> None:
         self.__users[username] = password
+        self.saveUsersFile()
     
     def checkDoesUserExist(self, username: str) -> bool:
         ...
@@ -35,10 +36,9 @@ class userManager:
     def checkIsPasswordCorrect(self, username: str, password: str) -> bool:
         ...
 
-    def setUserScore(self, username: str, scoreboard: Scoreboard, score: float) -> None:
-        ...
-
     def usersToString(self) -> str:
         usersStr = ""
         for user in self.__users:
             usersStr += f"{user} {self.__users[user]} \n"
+        
+        return usersStr
