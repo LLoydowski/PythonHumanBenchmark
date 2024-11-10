@@ -12,9 +12,13 @@ class Server:
         @self.__app.route('/verbal', methods=["GET", "POST"])
         def verbal():
             randomWord = self.__vm.getRandomWord()
+
+            response = render_template('vm_game.html', word=randomWord, lives=self.__vm.getLives(), score=self.__vm.getScore(), status="")
             
+            # response.set_cookie("test", "TestCookie")
+
             if(self.__vm.isGameFinnished() != ""):
-                return render_template('vm_game.html', word=randomWord, lives=self.__vm.getLives(), score=self.__vm.getScore(), status=self.__vm.isGameFinnished())
+                response = render_template('vm_game.html', word=randomWord, lives=self.__vm.getLives(), score=self.__vm.getScore(), status=self.__vm.isGameFinnished())
 
             if request.method == "POST":
                 choose = request.get_json()["choose"]
@@ -33,9 +37,24 @@ class Server:
 
                 self.__vm.generateRandomWord()
 
-                return render_template('vm_game.html', word=randomWord, lives=newLives, score=newScore, status="")
+                response = render_template('vm_game.html', word=randomWord, lives=newLives, score=newScore, status="")
 
-            return render_template('vm_game.html', word=randomWord, lives=self.__vm.getLives(), score=self.__vm.getScore(), status="")
+            return response
+
+        @self.__app.route("/login")
+        def login():
+            response = render_template("login.html")
+            return response
+
+        @self.__app.route("/set_name", methods=["POST"])
+        def save_name():
+
+            name = request.form["name"]
+
+            response = make_response(f"Name set to {name}")
+            response.set_cookie("player_name", name)
+
+            return response
         
         @self.__app.route('/', methods=["GET", "POST"])
         def index():
@@ -51,3 +70,7 @@ class Server:
             return render_template('index.html')
 
         self.__app.run(host="0.0.0.0", port=85, debug=True)
+
+
+server = Server()
+server.run()
