@@ -67,9 +67,27 @@ class Server:
                 name = json["name"]
                 password = json["password"]
 
+                status = self.__userManager.checkIsPasswordValid(password)
+
                 print(f"Name: {name} \nPass: {password}")
 
-                self.__userManager.addUser(name, password)
+                print(response)
+
+                if status != "":
+                    return {
+                        "status": status
+                    } 
+
+                if self.__userManager.checkDoesUserExist(name):
+                    return {
+                        "status": "User with this name already exists"
+                    }
+                else:
+                    self.__userManager.addUser(name, password)
+                    return {
+                        "status": "User created succefully"
+                    } 
+
 
             return response
 
