@@ -51,7 +51,6 @@ class VerbalMemory(Game):
                 self.scoreboard.setScore(playerName ,self.__score)
                 self.reset()
                 isRunning = False
-
     def reset(self):
         self.__score = 0
         self.__lives = 3

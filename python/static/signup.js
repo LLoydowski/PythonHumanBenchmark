@@ -95,7 +95,7 @@ function checkIsPasswordCorrect(){
 
 const form = document.querySelector("form")
 
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
     event.preventDefault()
 
     const username = document.getElementById("username").value.trim()
@@ -128,9 +128,9 @@ form.addEventListener("submit", (event) => {
     //     "password": password
     // })); 
 
-    let status = ""
+    const responseParagraph = document.getElementById("response")
 
-    fetch(window.location.href, {
+    let status = await Promise.resolve(fetch(window.location.href, {
         method: "post",
         body: JSON.stringify(data),
         mode: "cors",
@@ -138,8 +138,16 @@ form.addEventListener("submit", (event) => {
             "Content-Type": "application/json"
         })
     })
-    .then(response => response.json())
-    .then(response => status = response)
-    .then(() => console.log(status))
+    .then(response => response.json()))
 
+    status = status["status"]
+
+    responseParagraph.textContent = status
+
+    const date = new Date();
+    date.setTime(date.getTime() + 24*60*60*1000)
+
+
+    document.cookie = `username=${data["name"]}; expires=${date.toUTCString()}`
+   
 })      

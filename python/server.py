@@ -5,56 +5,68 @@ import VerbalMemory, userManagement
 class Server:
     def __init__(self):
         self.__app = Flask(__name__, template_folder="./website")
-        self.__vm = VerbalMemory.VerbalMemory()
-        self.__vm.generateRandomWord()
+        self.__vmGames = {} # username: str, game: VerbalMemory
         self.__userManager = userManagement.userManager()
         
     def run(self):
         @self.__app.route('/verbal', methods=["GET", "POST"])
         def verbal():
-            randomWord = self.__vm.getRandomWord()
 
-            response = render_template('vm_game.html', word=randomWord, lives=self.__vm.getLives(), score=self.__vm.getScore(), status="")
+            username = request.cookies.get("username") 
+
+
+            if(self.__userManager.checkDoesUserExist(username) == False):
+                return render_template("noUser.html", username=username)
             
-            # response.set_cookie("test", "TestCookie")
+            word = ""
+            lives = 0
+            score = 0
+            status = ""
 
-            if(self.__vm.isGameFinnished() != ""):
-                response = render_template('vm_game.html', word=randomWord, lives=self.__vm.getLives(), score=self.__vm.getScore(), status=self.__vm.isGameFinnished())
+            print(username)
 
+
+            if username not in list(self.__vmGames.keys()):
+                self.__vmGames[username] = VerbalMemory.VerbalMemory()
+
+                self.__vmGames[username].reset()
+                self.__vmGames[username].generateRandomWord()
+
+
+            word = self.__vmGames[username].getRandomWord()
+            lives = self.__vmGames[username].getLives()
+            score = self.__vmGames[username].getScore()
+            status = self.__vmGames[username].isGameFinnished()
+
+            response = render_template('vm_game.html', word=word, lives=lives, score=score, status=status)
+
+            
+            
             if request.method == "POST":
                 choose = request.get_json()["choose"]
 
-                print(f"Data: {choose} \n Word: {randomWord}")
-
-                if(choose == "new"):
-                    self.__vm.newWord()
+                if choose == "new" and status == "":
+                    self.__vmGames[username].newWord()
+                    self.__vmGames[username].generateRandomWord()
+                elif choose == "seen" and status == "":
+                    self.__vmGames[username].seenWord()
+                    self.__vmGames[username].generateRandomWord()
+                elif choose == "newGame":
+                    print("Test")
+                    self.__vmGames[username].reset()
+                    self.__vmGames[username].generateRandomWord()
                 else:
-                    self.__vm.seenWord()
+                    print("Pressed new or seen when lost")
 
-                newScore = self.__vm.getScore() 
-                newLives = self.__vm.getLives() 
-
-                print(f"Score: {newScore} \nLives: {newLives}")
-
-                self.__vm.generateRandomWord()
-
-                response = render_template('vm_game.html', word=randomWord, lives=newLives, score=newScore, status="")
-
+            if(status != ""):
+                self.__vmGames[username].scoreboard.setScore(username, score)
+                return response
+            
             return response
 
         @self.__app.route("/login")
         def login():
             response = render_template("login.html")
-            return response
-
-        @self.__app.route("/set_name", methods=["POST"])
-        def save_name():
-
-            name = request.form["name"]
-
-            response = make_response(f"Name set to {name}")
-            response.set_cookie("player_name", name)
-
             return response
 
         @self.__app.route("/signup", methods=["POST", "GET"])
