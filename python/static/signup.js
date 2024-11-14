@@ -111,22 +111,10 @@ form.addEventListener("submit", async (event) => {
         return
     }
 
-
     let data = {
         "name": username,
         "password": password
     }
-    // if(!checkIsPasswordCorrect())
-    //     return
-
-
-    // var xhr = new XMLHttpRequest();
-    // xhr.open("POST", window.location.href, true);
-    // xhr.setRequestHeader('Content-Type', 'application/json');
-    // xhr.send(JSON.stringify({
-    //     "name": username,
-    //     "password": password
-    // })); 
 
     const responseParagraph = document.getElementById("response")
 

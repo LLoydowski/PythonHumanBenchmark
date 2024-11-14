@@ -39,11 +39,16 @@ class userManager:
         return False
 
     def checkIsPasswordCorrect(self, username: str, password: str) -> bool:
-        ...
+        if self.__users[username] == password:
+            return True
+        return False
 
     def checkIsPasswordValid(self, password: str) -> str: # status
         length = len(password)
-    
+
+        if password == "":
+            return "Password can't be empty"
+
         numbersCounter = 0
         specialSignCounter = 0
         upperCaseCounter = 0

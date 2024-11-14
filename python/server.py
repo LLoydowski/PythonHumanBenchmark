@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, url_for, make_response
+from flask import Flask, render_template, request, flash, url_for, make_response, redirect
 import VerbalMemory, userManagement
 
 
@@ -11,9 +11,11 @@ class Server:
     def run(self):
         @self.__app.route('/verbal', methods=["GET", "POST"])
         def verbal():
-
             username = request.cookies.get("username") 
 
+            if not username:
+                print("test")
+                return redirect("/login")
 
             if(self.__userManager.checkDoesUserExist(username) == False):
                 return render_template("noUser.html", username=username)
@@ -22,8 +24,6 @@ class Server:
             lives = 0
             score = 0
             status = ""
-
-            print(username)
 
 
             if username not in list(self.__vmGames.keys()):
@@ -64,9 +64,24 @@ class Server:
             
             return response
 
-        @self.__app.route("/login")
+        @self.__app.route("/login", methods=["POST", "GET"])
         def login():
             response = render_template("login.html")
+
+            if request.method == "POST":
+                data = request.get_json()
+
+                username = data["name"]
+                password = data["password"]
+
+                if self.__userManager.checkDoesUserExist(username) == False:
+                    return {"status": "User with this name doesn't exist. <a href='/signup'> Try creating account instead. </a>"}
+
+                if self.__userManager.checkIsPasswordCorrect(username, password) == False:
+                    return {"status": "Username or password is incorrect."}
+
+                return {"status": ""}
+
             return response
 
         @self.__app.route("/signup", methods=["POST", "GET"])
@@ -80,10 +95,6 @@ class Server:
                 password = json["password"]
 
                 status = self.__userManager.checkIsPasswordValid(password)
-
-                print(f"Name: {name} \nPass: {password}")
-
-                print(response)
 
                 if status != "":
                     return {
@@ -117,7 +128,3 @@ class Server:
             return render_template('index.html')
 
         self.__app.run(host="0.0.0.0", port=85, debug=True)
-
-
-server = Server()
-server.run()
