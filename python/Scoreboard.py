@@ -21,9 +21,13 @@ class Scoreboard:
 
         for line in lines:
             words = line.split(" ")
+            if len(words) == 0:
+                return
+            
             username = words[0]
             score = words[1]
             self.scores[username] = score
+            pass
 
     def setScore(self, username, score):
         self.scores[username] = score

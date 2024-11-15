@@ -46,12 +46,11 @@ class VerbalMemory(Game):
                 playAgain = input("> ")
 
             if playAgain == "1":
-                game.reset()
+                self.reset()
             else:
-                self.scoreboard.saveScore(self.__score)
-                game.reset()
+                self.scoreboard.setScore(playerName ,self.__score)
+                self.reset()
                 isRunning = False
-
     def reset(self):
         self.__score = 0
         self.__lives = 3
@@ -107,4 +106,3 @@ class VerbalMemory(Game):
 
 game = VerbalMemory()
 game.play()
-
