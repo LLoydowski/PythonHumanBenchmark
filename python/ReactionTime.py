@@ -3,9 +3,12 @@ import time, random
 
 class ReactionTime(Game):
     def __init__(self):
-        super().__init__("../data/reaction_time.txt")
+        super().__init__("data/reaction_time.txt")
         self.__best_time_ms = float('inf')
         self.__scores = []
+        self.__startTime = 0
+        self.__stopTime = 0
+        self.__reactionTime = 0
     
     def averageScore(self):
         result = 0
@@ -13,6 +16,17 @@ class ReactionTime(Game):
             result += int(i)
         
         return int(result / len(self.__scores))
+    
+    def startTimer(self) -> None:
+        self.__startTime = time.time()
+
+    def stopTimer(self) -> None:
+        self.__stopTime = time.time()
+    
+    def calculateReactionTime(self) -> float:
+        deltaTime = self.__stopTime - self.__startTime
+        reactTime = round(deltaTime * 1000)
+        self.__reactionTime = reactTime
 
     def reactionRound(self):
             input("Press 'Enter' to start...")          
@@ -22,19 +36,25 @@ class ReactionTime(Game):
 
             print("Click!")
 
-            start_time = time.time()
+            self.startTimer()
             input()
-            reaction_time_ms = (time.time() - start_time) * 1000 
+            self.stopTimer()
 
-            reaction_time_ms = round(reaction_time_ms)
+            self.calculateReactionTime()
 
-            if reaction_time_ms < 50:
-                print("cheated!")
-                return
+            if self.checkIsTimeCheated():
+                print("You cheated!")
             else:
-                print(f"Your reaction time was: {reaction_time_ms:.0f} ms")
-                self.__scores.append(reaction_time_ms)
-            
+                print(f"Your reaction time was: {self.__reaction_time_ms:.0f} ms")
+
+    def checkIsTimeCheated(self) -> bool:
+        if self.__reactionTime < 50:
+            return True
+        
+        return False
+
+    def getReactionTime(self):
+        return self.__reactionTime
 
 
     def play(self):
