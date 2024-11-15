@@ -46,5 +46,5 @@ class ReactionTime(Game):
         print(f"Your average score: {self.averageScore()}")
         self.scoreboard.saveScore(self.__best_time_ms)
 
-# a = ReactionTime()
-# a.play()
+a = ReactionTime()
+a.play()
