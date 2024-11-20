@@ -1,0 +1,140 @@
+@font-face {
+    font-family: Itim;
+    src: url(resources/Itim-Regular.ttf);
+}
+
+:root {
+    --lightBlue: #AFC1D6;
+    --white: #F8F8F8;
+    --purple: #655A7C;
+    --purpleL: #AB92BF;
+    --turquise: #BAE3DC;
+}
+
+body {
+    margin: 0;
+    font-family: Itim;
+    background-color: var(--white);
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+
+/*-----------------------NAV-----------------------*/
+
+
+
+nav {
+    height: 5rem;
+    display:  flex;
+    flex-direction: row;
+    position: sticky;
+    top: 0;
+}
+
+.navTitle {
+    background-color: var(--purple);
+    width: 80%;
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    color: var(--white);
+    padding-left: 1rem;
+}
+
+.navTitle img {
+    width: 6rem;
+}
+
+.navOptions{
+    display: flex;
+    background-color: var(--purpleL);
+    width: 20%;
+    padding: 1rem;
+}
+
+.optionsNotLogged, .optionsLogged{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+    color: var(--white);
+    font-size: 1.3rem
+}
+
+/*-----------------------GAME-----------------------*/
+
+.gameContainer {
+    margin-top: 5rem;
+    z-index: 10;
+    width: 100%;
+    height: 30rem;
+    display: flex;
+    justify-content: center;
+}
+
+.game {
+    background-color: var(--lightBlue);
+    width: 60%;
+    height: 100%;
+    box-shadow: 0px 0px 15px 0px rgba(104, 105, 124, 0.53);
+    border: 1px solid rgb(189, 189, 189);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.game input {
+    width: 80%;
+    height: 2rem;
+    border: none;
+    background-color: rgb(227, 228, 230);
+    font-family: Itim;
+    padding: 0.3rem;
+    border-radius: 0.4rem;
+}
+
+.game button {
+    border: none;
+    background-color: var(--purpleL);
+    color: var(--white);
+    font-family: Itim;
+    font-size: 110%;
+}
+
+input:focus {
+    outline: none;
+}
+
+.gameScore {
+    color: var(--white);
+    font-size: 4rem;
+}
+
+/*-----------------------Reaction Time-----------------------*/
+
+
+.reactionGameButton {
+    width: 50%;
+    height: 10rem;
+}
+
+.reactionGameButton p {
+    font-size: 2rem;
+    color: var(--white)
+}
+
+/*-----------------------FOOTER-----------------------*/
+
+footer {
+    background-color: var(--purple);
+    height: 5rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
