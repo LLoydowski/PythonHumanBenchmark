@@ -80,8 +80,12 @@ nav {
     background-color: var(--lightBlue);
     width: 60%;
     height: 100%;
-    box-shadow: 0px 0px 15px 0px rgba(66, 68, 90, 0.53);
+    box-shadow: 0px 0px 15px 0px rgba(104, 105, 124, 0.53);
     border: 1px solid rgb(189, 189, 189);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .game input {
@@ -95,10 +99,8 @@ nav {
 }
 
 .game button {
-    width: 10rem;
-    height: 3rem;
     border: none;
-    background-color: var(--lightBlue);
+    background-color: var(--purpleL);
     color: var(--white);
     font-family: Itim;
     font-size: 110%;
@@ -108,10 +110,31 @@ input:focus {
     outline: none;
 }
 
+.gameScore {
+    color: var(--white);
+    font-size: 4rem;
+}
+
+/*-----------------------Reaction Time-----------------------*/
+
+
+.reactionGameButton {
+    width: 50%;
+    height: 10rem;
+}
+
+.reactionGameButton p {
+    font-size: 2rem;
+    color: var(--white)
+}
+
 /*-----------------------FOOTER-----------------------*/
 
 footer {
     background-color: var(--purple);
     height: 5rem;
-    margin-top: 5rem;;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
