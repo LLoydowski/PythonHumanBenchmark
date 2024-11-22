@@ -153,3 +153,48 @@ input[type="number"] {
     -moz-appearance: textfield;
     appearance: textfield;
 }
+
+
+
+/*-----------------------Verbal Memory-----------------------*/
+
+.gameVerbalMemory{
+    width: 100%;
+    height: 100%;
+
+}
+
+.gameVerbalLifes {
+    background-color: var(--purpleL);
+    display: flex;
+    justify-content: center;
+    height: 25%;
+}
+
+.gameVerbalLifes img {
+    width: 4rem;
+}
+
+.gameVerbalWord {
+    text-align: center;
+    color: var(--white);
+}
+
+.gameVerbalButtons {
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.gameVerbalLifesScore {
+    background-color: var(--purpleL);
+    width: 100%;
+    text-align: center;
+    margin-top: 0rem;
+    padding: 0 0 1rem 0;
+}
+
+.gameVerbalButtons button {
+    width: 30%;
+    height: 4rem;
+}

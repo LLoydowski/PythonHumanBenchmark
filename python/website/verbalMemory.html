@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,9 @@
     <link rel="stylesheet" href="game.css">
     <link rel="stylesheet" href="default.css">
 </head>
+
 <body>
-    
+
     <nav>
         <div class="navTitle">
             <img src="resources/logo.svg">
@@ -39,15 +41,32 @@
 
     <div class="gameContainer">
         <div class="game">
-            
+            <div class="gameVerbalMemory">
+
+                <div class="gameVerbalLifes">
+                    <img src="resources/heart.svg" id="lifeOne">
+                    <img src="resources/heart.svg" id="lifeOne">
+                    <img src="resources/heart.svg" id="lifeOne">
+                </div>
+                <p class="gameVerbalLifesScore">Score: <span id="score"></span></p>
+
+                <p class="gameVerbalWord hugeSize" id="verbalWord">Skibidi</p>
+               
+                <div class="gameVerbalButtons">
+                    <button class="gameVerbalNewWordButton">New</button>
+                    <button class="gameVerbalSeenWordButton">Seen</button>
+                    <button class="gameVerbalNewGameButton hidden">New Game</button>
+                </div>
+            </div>
         </div>
     </div>
 
 
 
     <footer>
-        
+
     </footer>
 
 </body>
+
 </html>
