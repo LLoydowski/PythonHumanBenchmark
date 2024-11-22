@@ -22,49 +22,6 @@ body {
 }
 
 
-
-/*-----------------------NAV-----------------------*/
-
-
-
-nav {
-    height: 5rem;
-    display:  flex;
-    flex-direction: row;
-    position: sticky;
-    top: 0;
-}
-
-.navTitle {
-    background-color: var(--purple);
-    width: 80%;
-    display: flex;
-    align-items: center;
-    font-size: 1.5rem;
-    color: var(--white);
-    padding-left: 1rem;
-}
-
-.navTitle img {
-    width: 6rem;
-}
-
-.navOptions{
-    display: flex;
-    background-color: var(--purpleL);
-    width: 20%;
-    padding: 1rem;
-}
-
-.optionsNotLogged, .optionsLogged{
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    align-items: center;
-    color: var(--white);
-    font-size: 1.3rem
-}
-
 /*-----------------------CARD-----------------------*/
 
 
@@ -136,15 +93,4 @@ input {
 
 input:focus {
     outline: none;
-}
-
-/*-----------------------FOOTER-----------------------*/
-
-footer {
-    background-color: var(--purple);
-    height: 5rem;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0; 
 }

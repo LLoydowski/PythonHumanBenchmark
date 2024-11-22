@@ -21,49 +21,22 @@ body {
     display: none !important;
 }
 
-
-
-/*-----------------------NAV-----------------------*/
-
-
-
-nav {
-    height: 5rem;
-    display:  flex;
-    flex-direction: row;
-    position: sticky;
-    top: 0;
+.smallSize {
+    font-size: 0.5rem !important;
 }
 
-.navTitle {
-    background-color: var(--purple);
-    width: 80%;
-    display: flex;
-    align-items: center;
-    font-size: 1.5rem;
-    color: var(--white);
-    padding-left: 1rem;
+.mediumSize {
+    font-size: 1rem !important;
 }
 
-.navTitle img {
-    width: 6rem;
+.bigSize {
+    font-size: 2rem !important;
 }
 
-.navOptions{
-    display: flex;
-    background-color: var(--purpleL);
-    width: 20%;
-    padding: 1rem;
+.hugeSize {
+    font-size: 4rem !important;
 }
 
-.optionsNotLogged, .optionsLogged{
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    align-items: center;
-    color: var(--white);
-    font-size: 1.3rem
-}
 
 /*-----------------------GAME-----------------------*/
 
@@ -86,6 +59,7 @@ nav {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-bottom: 5rem;
 }
 
 .game input {
@@ -113,6 +87,7 @@ input:focus {
 .gameScore {
     color: var(--white);
     font-size: 4rem;
+    border: 1px solid rgb(221, 31, 31);
 }
 
 /*-----------------------Reaction Time-----------------------*/
@@ -124,17 +99,57 @@ input:focus {
 }
 
 .reactionGameButton p {
-    font-size: 2rem;
     color: var(--white)
 }
 
-/*-----------------------FOOTER-----------------------*/
+/*-----------------------Number Memory-----------------------*/
 
-footer {
-    background-color: var(--purple);
-    height: 5rem;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+.gameNumberMemory {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    padding: 2;
+    width: 100%;
+
+}
+
+.gameNumber {
+    color: var(--white);
+    height: 10%;
+}
+
+.gameNumberInput {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.gameNumberInput input {
+    height: 4rem;
+    font-size: 3rem;
+    padding: 1rem;
+    text-align: center;
+}
+
+.gameScoreNumber {
+    height: 5%;
+    margin-bottom: -1rem;
+}
+
+.gameNumberButton {
+    margin-top: 1rem;
+    padding: 1rem;
+    width: 50%;
+}
+
+input[type="number"]::-webkit-inner-spin-button, 
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
 }
