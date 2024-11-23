@@ -19,6 +19,7 @@ nav {
     flex-direction: row;
     position: sticky;
     top: 0;
+    z-index: 100;
 }
 
 .navTitle {
@@ -33,6 +34,11 @@ nav {
 
 .navTitle img {
     width: 6rem;
+    -webkit-user-drag: none;
+    -moz-user-drag: none;
+    -ms-user-drag: none;   
+    pointer-events: none;
+    user-select: none;
 }
 
 .navOptions{
@@ -49,6 +55,19 @@ nav {
     align-items: center;
     color: var(--white);
     font-size: 1.3rem
+}
+
+.scoresButton, .nickButton, .LoginButton, .signUpButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.4s ;
+}
+
+.scoresButton:hover, .nickButton:hover, .LoginButton:hover, .signUpButton:hover{
+    transform: scale(1.15);
+    color: white;
+    cursor: pointer;
 }
 
 /*-----------------------FOOTER-----------------------*/

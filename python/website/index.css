@@ -44,6 +44,12 @@ body {
     border-radius: 20%;
     padding: 1rem;
     padding-inline: 1.7rem;
+    -webkit-user-drag: none;
+    -moz-user-drag: none;
+    -ms-user-drag: none;   
+    pointer-events: none;
+    user-select: none; 
+    
 }
 
 .banner h1 {
@@ -75,6 +81,8 @@ body {
     align-items: center;
     border: 1px solid rgb(153, 153, 153);
     box-shadow: 0px 0px 15px 0px rgba(66, 68, 90, 0.53);
+    transition: transform 0.4s, box-shadow 0.4s;
+    cursor: pointer;
 }
 
 .cardUpper {
@@ -92,4 +100,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.cardLower img {
+    width: 50%;
+    height: 50%;
+}
+
+
+.card:hover{
+    transform: scale(1.1);
+    box-shadow: 0px 0px 15px 0px rgba(56, 58, 78, 0.53);
 }

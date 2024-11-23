@@ -9,6 +9,7 @@
     --purple: #655A7C;
     --purpleL: #AB92BF;
     --turquise: #BAE3DC;
+    --gray: #5F6368;
 }
 
 body {
@@ -111,12 +112,12 @@ input:focus {
     height: 100%;
     padding: 2;
     width: 100%;
-
 }
 
 .gameNumber {
     color: var(--white);
     height: 10%;
+    user-select: none;
 }
 
 .gameNumberInput {
@@ -135,12 +136,20 @@ input:focus {
 .gameScoreNumber {
     height: 5%;
     margin-bottom: -1rem;
+    color: var(--white)
 }
 
 .gameNumberButton {
     margin-top: 1rem;
     padding: 1rem;
     width: 50%;
+    transition: transform 0.4s, filter 0.4s;
+    cursor: pointer;
+}
+
+.gameNumberButton:hover{
+    transform: scale(1.1);
+    filter: brightness(1.1);
 }
 
 input[type="number"]::-webkit-inner-spin-button, 
@@ -173,6 +182,19 @@ input[type="number"] {
 
 .gameVerbalLifes img {
     width: 4rem;
+    transition: transform 0.4s;
+}
+
+.gameVerbalLifes img:nth-child(1):hover {
+    transform: rotate(20deg) scale(1.1);
+}
+
+.gameVerbalLifes img:nth-child(2):hover {
+    transform: scale(1.1);
+}
+
+.gameVerbalLifes img:nth-child(3):hover {
+    transform: rotate(-20deg) scale(1.1);
 }
 
 .gameVerbalWord {
@@ -192,9 +214,18 @@ input[type="number"] {
     text-align: center;
     margin-top: 0rem;
     padding: 0 0 1rem 0;
+    color: var(--gray)
 }
+
 
 .gameVerbalButtons button {
     width: 30%;
     height: 4rem;
+    transition: transform 0.4s, filter 0.4s;
+    cursor: pointer;
+}
+
+.gameVerbalButtons button:hover {
+    transform: scale(1.1);
+    filter: brightness(1.1);
 }

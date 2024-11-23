@@ -79,6 +79,7 @@ input {
     font-family: Itim;
     padding: 0.3rem;
     border-radius: 0.4rem;
+    cursor: pointer;
 }
 
 .card button {
@@ -89,6 +90,13 @@ input {
     color: var(--white);
     font-family: Itim;
     font-size: 110%;
+    transition: transform 0.4s, filter 0.4s;
+    cursor: pointer;
+}
+
+.card button:hover {
+    transform: scale(1.1);
+    filter: brightness(1.1);
 }
 
 input:focus {
