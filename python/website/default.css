@@ -9,6 +9,15 @@ body {
     display: none !important;
 }
 
+:root {
+    --lightBlue: #AFC1D6;
+    --white: #F8F8F8;
+    --purple: #655A7C;
+    --purpleL: #AB92BF;
+    --turquise: #BAE3DC;
+    --gray: #5F6368;
+}
+
 /*-----------------------Scroll-----------------------*/
 
 
@@ -104,5 +113,49 @@ nav {
 footer {
     background-color: var(--purple);
     height: 5rem;
-    margin-top: 5rem;;
+    margin-top: 5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.rightFooter {
+    display: flex;
+    justify-content: center;
+    padding-right: 1rem;
+}
+
+.rightFooter img {
+    width: 5rem;
+}
+
+.leftFooter{
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 1rem;
+
+}
+
+.leftFooter a {
+    text-decoration: none;
+    color: var(--purpleL);
+    display: flex;
+    text-align: center;
+    align-items: center;
+    transition: transform 0.4s, filter 0.4s;
+}
+
+.leftFooter a img{
+    width: 1rem;
+    margin-right: 0.5rem;
+}
+
+.leftFooter a:hover{
+    transform: scale(1.1);
+    filter: brightness();
+}
+
+.rightFooter img, .leftFooter img {
+    filter: brightness(0) saturate(100%) invert(69%) sepia(46%) saturate(209%) hue-rotate(230deg) brightness(82%) contrast(91%);
 }
