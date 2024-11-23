@@ -61,6 +61,8 @@ body {
     align-items: center;
     justify-content: center;
     margin-bottom: 5rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
 }
 
 .game input {
@@ -88,7 +90,6 @@ input:focus {
 .gameScore {
     color: var(--white);
     font-size: 4rem;
-    border: 1px solid rgb(221, 31, 31);
 }
 
 /*-----------------------Reaction Time-----------------------*/
@@ -97,6 +98,14 @@ input:focus {
 .reactionGameButton {
     width: 50%;
     height: 10rem;
+    transition: transform 0.4s, filter 0.4s;
+    cursor: pointer;
+    border-radius: 0.5rem;
+}
+
+.reactionGameButton:hover{
+    transform: scale(1.1);
+    filter: brightness(1.1);
 }
 
 .reactionGameButton p {
@@ -145,6 +154,7 @@ input:focus {
     width: 50%;
     transition: transform 0.4s, filter 0.4s;
     cursor: pointer;
+    border-radius: 0.3rem;
 }
 
 .gameNumberButton:hover{
@@ -170,7 +180,6 @@ input[type="number"] {
 .gameVerbalMemory{
     width: 100%;
     height: 100%;
-
 }
 
 .gameVerbalLifes {
@@ -205,7 +214,7 @@ input[type="number"] {
 .gameVerbalButtons {
     display: flex;
     justify-content: space-evenly;
-    
+
 }
 
 .gameVerbalLifesScore {
@@ -223,6 +232,7 @@ input[type="number"] {
     height: 4rem;
     transition: transform 0.4s, filter 0.4s;
     cursor: pointer;
+    border-radius: 0.3rem;
 }
 
 .gameVerbalButtons button:hover {
