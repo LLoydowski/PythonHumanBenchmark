@@ -9,6 +9,7 @@ class ReactionTime(Game):
         self.__startTime = 0
         self.__stopTime = 0
         self.__reactionTime = 0
+        self.__waitTime = 0
     
     def averageScore(self):
         result = 0
@@ -20,19 +21,41 @@ class ReactionTime(Game):
     def startTimer(self) -> None:
         self.__startTime = time.time()
 
-    def stopTimer(self) -> None:
+    def stopTimer(self) -> int:
         self.__stopTime = time.time()
+
+        self.calculateReactionTime()
+        return self.__reactionTime
+
     
-    def calculateReactionTime(self) -> float:
+    def calculateReactionTime(self) -> None:
         deltaTime = self.__stopTime - self.__startTime
         reactTime = round(deltaTime * 1000)
         self.__reactionTime = reactTime
+
+
+    def calculateRealTime(self, time) -> float:
+        deltaTime = time - self.__startTime
+        reactTime = round(deltaTime * 1000)
+        return reactTime
+    
+    async def startCountdown(self) -> int:
+        time.sleep(self.__waitTime)
+        self.startTimer()
+        return time.time()
+    
+    def generateWaitTime(self) -> None:
+        self.__waitTime = random.uniform(1, 5)
+    
+    def getWaitTime(self) -> int:
+        return self.__waitTime
 
     def reactionRound(self):
             input("Press 'Enter' to start...")          
             self.clear()
 
-            time.sleep(random.uniform(1, 5))
+            self.generateWaitTime()
+            time.sleep(self.__waitTime)
 
             print("Click!")
 
@@ -58,13 +81,15 @@ class ReactionTime(Game):
 
 
     def play(self):
+        print("Enter your name: ")
+        username = input("> ")
 
         rounds = 5
         for _ in range(rounds):
             self.reactionRound()
         
         print(f"Your average score: {self.averageScore()}")
-        self.scoreboard.saveScore(self.__best_time_ms)
+        self.scoreboard.setScore(username ,self.__best_time_ms)
 
 # a = ReactionTime()
 # a.play()

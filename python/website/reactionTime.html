@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JMbenchmark Reaction</title>
+</head>
+<body>
+    <style>
+        .stopTimerBG{
+            background-color: red;
+            width: 100vw;
+            height: 40vh;
+        }
+        .stopTimer{
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            height: 40vh;
+            background-color: blue;
+        }
+        .hidden{
+            display: none;
+        }
+    </style>
+    <form method="post">
+        <button id="startGame" onclick="sendRequest('newGame')">Start game</button>
+        <div class="stopTimerBG">
+            <button class="hidden stopTimer" id="reactionButton" onclick="sendRequest('clicked')">Click</button>
+        </div>
+    </form>
+    <script src="{{url_for('static', filename='reactionTime.js')}}"></script>
+</body>
+</html>

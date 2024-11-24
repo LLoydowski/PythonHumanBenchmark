@@ -1,14 +1,63 @@
 from flask import Flask, render_template, request, flash, url_for, make_response, redirect
-import VerbalMemory, userManagement
-
+import VerbalMemory, userManagement, ReactionTime, asyncio, time
 
 class Server:
     def __init__(self):
         self.__app = Flask(__name__, template_folder="./website")
         self.__vmGames = {} # username: str, game: VerbalMemory
+        self.__rtGames = {}
         self.__userManager = userManagement.userManager()
         
     def run(self):
+        @self.__app.route('/reaction', methods=["GET", "POST"])
+        def reaction():
+            username = request.cookies.get("username") 
+
+            if not username:
+                print("test")
+                return redirect("/login")
+
+            if(self.__userManager.checkDoesUserExist(username) == False):
+                return render_template("noUser.html", username=username)
+            
+            if username not in list(self.__rtGames.keys()):
+                self.__rtGames[username] = ReactionTime.ReactionTime()
+
+            if request.method == "POST":
+                data = request.get_json()
+                action = data["action"]
+
+                if action == "newGame":
+                    self.__rtGames[username].generateWaitTime()
+                    startTime = asyncio.run(self.__rtGames[username].startCountdown())
+                    return {"sStartTime": startTime}
+                
+                elif action == "clicked":
+                    self.__rtGames[username].stopTimer()
+                    endTime = time.time()
+
+                    return {"sEndTime": endTime}
+                
+                elif action == "validation":
+                    sStartTime = data["sStartTime"]
+                    sEndTime = data["sEndTime"]
+                    cStartTime = data["cStartTime"]
+                    cEndTime = data["cEndTime"]
+
+                    sReaction = sEndTime - sStartTime
+                    cReaction = cEndTime - cStartTime
+
+                    timesDiffrence = sReaction - cReaction
+
+                    if(timesDiffrence > 175):
+                        return {"status": "You either have bad internet connection or you cheated. Therefore your score won't be saved. Sorry!"}
+
+                    self.__rtGames[username].scoreboard.setScore(username, cReaction)
+                    
+                    return {"status": f"Your reaction time is {cReaction}"}
+
+            return render_template("reactionTime.html")
+        
         @self.__app.route('/verbal', methods=["GET", "POST"])
         def verbal():
             username = request.cookies.get("username") 
