@@ -25,7 +25,9 @@ form.addEventListener("submit", async (event) => {
 
     const statusParagraph = document.getElementById('status')
 
-    statusParagraph.innerHTML = status
+    if(status != ""){
+        alert(status)
+    }
 
     const date = new Date();
     date.setTime(date.getTime() + 24*60*60*1000)

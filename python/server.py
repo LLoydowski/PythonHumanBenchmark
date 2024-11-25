@@ -133,12 +133,6 @@ class Server:
 
             if(self.__userManager.checkDoesUserExist(username) == False):
                 return render_template("noUser.html", username=username)
-            
-            word = ""
-            lives = 0
-            score = 0
-            status = ""
-
 
             if username not in list(self.__vmGames.keys()):
                 self.__vmGames[username] = VerbalMemory.VerbalMemory()
@@ -147,17 +141,13 @@ class Server:
                 self.__vmGames[username].generateRandomWord()
 
 
-            word = self.__vmGames[username].getRandomWord()
-            lives = self.__vmGames[username].getLives()
-            score = self.__vmGames[username].getScore()
             status = self.__vmGames[username].isGameFinnished()
 
-            response = render_template('verbalMemory.html', word=word, lives=lives, score=score, status=status)
+            if status != "":
+                self.__vmGames[username].reset()
 
-            
-            
             if request.method == "POST":
-                choose = request.get_json()["choose"]
+                choose = request.get_json()["chooice"]
 
                 if choose == "new" and status == "":
                     self.__vmGames[username].newWord()
@@ -168,14 +158,17 @@ class Server:
                 elif choose == "newGame":
                     self.__vmGames[username].reset()
                     self.__vmGames[username].generateRandomWord()
-                else:
-                    ...
 
-            if(status != ""):
-                self.__vmGames[username].scoreboard.setScore(username, score)
-                return response
-            
-            return response
+                if self.__vmGames[username].getLives() == 0:
+                    self.__vmGames[username].scoreboard.setScore(username, self.__vmGames[username].getScore())
+                
+                return {
+                    "status": self.__vmGames[username].isGameFinnished(),
+                    "randWord": self.__vmGames[username].getRandomWord(),
+                    "score": self.__vmGames[username].getScore(),
+                    "lives": self.__vmGames[username].getLives()
+                }
+            return render_template('verbalMemory.html')
 
         @self.__app.route("/login", methods=["POST", "GET"])
         def login():

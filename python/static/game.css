@@ -276,3 +276,10 @@ input[type="number"] {
     color: transparent !important;
     background-color: transparent !important;
 }
+
+/*! Verbal Memo addition  */
+
+
+.disabledHeart{
+    filter: grayscale(1);
+}

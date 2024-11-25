@@ -1,24 +1,68 @@
-const form = document.querySelector("form")
+const scorePar = document.getElementById("score")
+const wordPar = document.getElementById("verbalWord")
 
-let choose = undefined 
+const newButton = document.querySelector(".gameVerbalNewWordButton")
+const seenButton = document.querySelector(".gameVerbalSeenWordButton")
+const newGameButton = document.querySelector(".gameVerbalNewGameButton")
 
-async function sleep(ms){
-    return new Promise(resolve => setTimeout(resolve, ms));
+const life1 = document.getElementById("lifeOne")
+const life2 = document.getElementById("lifeTwo")
+const life3 = document.getElementById("lifeThree")
+
+
+async function sendRequest(type){
+    let gameInfo = await Promise.resolve(fetch(window.location.href, {
+        method: "post",
+        mode: "cors",
+        headers: new Headers({
+            "Content-Type": "application/json"
+        }),
+        body: JSON.stringify({
+            "chooice": type
+        })
+    })
+    .then(res => res.json()))
+
+    scorePar.textContent = gameInfo["score"]
+    wordPar.textContent = gameInfo["randWord"]
+
+    setLivesColor(gameInfo["lives"])
+
+    newButton.classList.remove("hidden")
+    seenButton.classList.remove("hidden")
+    newGameButton.classList.add("hidden")
+    
+    if(gameInfo["status"] != ""){
+        alert(gameInfo["status"])
+        newButton.classList.add("hidden")
+        seenButton.classList.add("hidden")
+        newGameButton.classList.remove("hidden")
+        wordPar.textContent = ''
+    }
 }
 
-form.addEventListener("submit", (e) => {
-    e.preventDefault()
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", window.location.href, true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify({
-        "choose": choose
-    }));
-    sleep(20)
-    .then(() => window.location.reload())
-    
-})
 
-function setChoose(value){
-    choose = value
+function setLivesColor(lives){
+    switch(lives){
+        case 0:
+            life1.classList.add("disabledHeart")
+            life2.classList.add("disabledHeart")
+            life3.classList.add("disabledHeart")
+        case 1:
+            life1.classList.remove("disabledHeart")
+            life2.classList.add("disabledHeart")
+            life3.classList.add("disabledHeart")
+            break
+        case 2:
+            life1.classList.remove("disabledHeart")
+            life2.classList.remove("disabledHeart")
+            life3.classList.add("disabledHeart")
+            break
+        case 3:
+            life1.classList.remove("disabledHeart")
+            life2.classList.remove("disabledHeart")
+            life3.classList.remove("disabledHeart")
+            break
+    }
+    console.log(lives)
 }

@@ -16,24 +16,24 @@
 <body>
 
     <nav>
-        <div class="navTitle">
+        <a class="navTitle" href="/">
             <img src="{{url_for('static', filename='resources/logo.svg')}}">
-        </div>
+        </a>
         <div class="navOptions">
 
 
             <div class="optionsNotLogged">
                 <div class="signUpButton">
-                    <p>Sign Up</p>
+                    <a href="/signup">Sign Up</a>
                 </div>
                 <div class="LoginButton">
-                    <p>Login</p>
+                    <a href="/login">Login</a>
                 </div>
             </div>
 
             <div class="optionsLogged hidden">
                 <div class="scoresButton">
-                    <p>Scores</p>
+                    <a href="/scores">Scores</a>
                 </div>
                 <div class="nickButton">
                     <p id="nick">Nick</p>
@@ -49,17 +49,17 @@
 
                 <div class="gameVerbalLifes">
                     <img src="{{url_for('static', filename='resources/heart.svg')}}" id="lifeOne">
-                    <img src="{{url_for('static', filename='resources/heart.svg')}}" id="lifeOne">
-                    <img src="{{url_for('static', filename='resources/heart.svg')}}">
+                    <img src="{{url_for('static', filename='resources/heart.svg')}}" id="lifeTwo">
+                    <img src="{{url_for('static', filename='resources/heart.svg')}}" id="lifeThree">
                 </div>
                 <p class="gameVerbalLifesScore">Score: <span id="score"></span></p>
 
-                <p class="gameVerbalWord hugeSize" id="verbalWord">Skibidi</p>
+                <p class="gameVerbalWord hugeSize" id="verbalWord"></p>
                
                 <div class="gameVerbalButtons">
-                    <button class="gameVerbalNewWordButton">New</button>
-                    <button class="gameVerbalSeenWordButton">Seen</button>
-                    <button class="gameVerbalNewGameButton hidden">New Game</button>
+                    <button onclick="sendRequest('new')" class="gameVerbalNewWordButton hidden">New</button>
+                    <button onclick="sendRequest('newGame')" class="gameVerbalNewGameButton">New Game</button>
+                    <button onclick="sendRequest('seen')" class="gameVerbalSeenWordButton hidden">Seen</button>
                 </div>
             </div>
         </div>
@@ -70,7 +70,8 @@
     <footer>
 
     </footer>
-
+    <script src="{{url_for('static', filename='default.js')}}"></script>
+    <script src="{{url_for('static', filename='vm_game.js')}}"></script>
 </body>
 
 </html>
