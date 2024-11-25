@@ -18,8 +18,8 @@
             <img src="{{url_for('static', filename='resources/logo.svg')}}">
         </a>
         <div class="navOptions">
-            
-            
+
+
             <div class="optionsNotLogged">
                 <div class="signUpButton">
                     <a href="/signup">Sign Up</a>
@@ -28,10 +28,10 @@
                     <a href="/login">Login</a>
                 </div>
             </div>
-            
+
             <div class="optionsLogged hidden">
                 <div class="scoresButton">
-                    <p>Scores</p>
+                    <a href="/scores">Scores</a>
                 </div>
                 <div class="nickButton">
                     <p id="nick">Nick</p>
@@ -62,7 +62,7 @@
         </div>
         
     </form>
-    
+    <script src="{{url_for('static', filename='default.js')}}"></script>
     <script src="{{url_for('static', filename='login.js')}}"></script>
 </body>
 </html>

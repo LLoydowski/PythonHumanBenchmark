@@ -4,35 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JM Benchmarks</title>
-    <link rel="icon" href="resources/logo.svg" type="image/svg+xml">
-    <link rel="icon" href="resources/logo.svg" type="image/png">
-    <link rel="icon" href="resources/logo.svg" type="image/x-icon">
+    <link rel="icon" href="{{url_for('static', filename='resources/logo.svg')}}" type="image/svg+xml">
+    <link rel="icon" href="{{url_for('static', filename='resources/logo.svg')}}" type="image/png">
+    <link rel="icon" href="{{url_for('static', filename='resources/logo.svg')}}" type="image/x-icon">
 
-    <link rel="stylesheet" href="scores.css">
-    <link rel="stylesheet" href="default.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='scores.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='default.css')}}">
 </head>
 <body>
     
  
     <nav>
-        <div class="navTitle">
-            <img src="resources/logo.svg">
-        </div>
+        <a class="navTitle" href="/">
+            <img src="{{url_for('static', filename='resources/logo.svg')}}">
+        </a>
         <div class="navOptions">
 
 
             <div class="optionsNotLogged">
                 <div class="signUpButton">
-                    <p>Sign Up</p>
+                    <a href="/signup">Sign Up</a>
                 </div>
                 <div class="LoginButton">
-                    <p>Login</p>
+                    <a href="/login">Login</a>
                 </div>
             </div>
 
             <div class="optionsLogged hidden">
                 <div class="scoresButton">
-                    <p>Scores</p>
+                    <a href="/scores">Scores</a>
                 </div>
                 <div class="nickButton">
                     <p id="nick">Nick</p>
@@ -46,44 +46,63 @@
         <table>
             <tr>
                 <th>
-                    <img src="resources/note.svg">
-                    <img src="resources/brain.svg">
+                    <img src="{{url_for('static', filename='resources/note.svg')}}">
+                    <img src="{{url_for('static', filename='resources/brain.svg')}}">
                     <br>
                     <span>Verbal Memory</span>
                 </th>
                 <th>
-                    <img src="resources/thunder.svg">
-                    <img src="resources/mouse.svg">
+                    <img src="{{url_for('static', filename='resources/thunder.svg')}}">
+                    <img src="{{url_for('static', filename='resources/mouse.svg')}}">
                     <br>
                     <span>Reaction Time</span>
                 </th>
                 <th>
-                    <img src="resources/number.svg">
-                    <img src="resources/brain.svg">
+                    <img src="{{url_for('static', filename='resources/number.svg')}}">
+                    <img src="{{url_for('static', filename='resources/brain.svg')}}">
                     <br>
-                    <span>Verbal Memory</span>
+                    <span>Number Memory</span>
                 </th>
             </tr>
             <tr>
                 <th class="bestScoreTh">
                     <span class="bestScoreText">BEST SCORE:</span>
                     <br>
-                    <span id="bestScoreVerbal">X</span>
+                    <span id="bestScoreVerbal">{{vm}}</span>
                 </th>
                 <th class="bestScoreTh">
                     <span class="bestScoreText">BEST SCORE:</span>
                     <br>
-                    <span id="bestScoreReaction">X</span>
+                    <span id="bestScoreReaction">{{rt}}</span>
                     <span>ms</span>
                 </th>
                 <th class="bestScoreTh">
                     <span class="bestScoreText">BEST SCORE:</span>
                     <br>
-                    <span id="bestScoreNumber">X</span>
+                    <span id="bestScoreNumber">{{nm}}</span>
                 </th>
             </tr>
         </table>
     </div>
+    <footer>
+        <div class="leftFooter">
+
+            <a href="https://github.com/Martisos">
+                <img src="{{url_for('static', filename='resources/github.svg')}}">
+                <span>Martin's github here!</span>
+            </a>
+            <a href="https://github.com/LLoydowski">
+                <img src="{{url_for('static', filename='resources/github.svg')}}">
+                <span>John's github here!</span>
+            </a>
+        </div>
+        <div class="rightFooter">
+            <img src="{{url_for('static', filename='resources/logo.svg')}}">
+        </div>
+
+    </footer>
+
+    <script src="{{url_for('static', filename='default.js')}}"></script>
 
 </body>
 </html>

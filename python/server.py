@@ -219,8 +219,29 @@ class Server:
 
 
             return response
+        
+        @self.__app.route("/scores", methods=["GET"])
+        def scores():
+            username = request.cookies.get("username") 
 
-        @self.__app.route('/', methods=["GET", "POST"])
+            if not username:
+                return redirect("/login")
+
+            if(self.__userManager.checkDoesUserExist(username) == False):
+                return render_template("noUser.html", username=username)
+
+            tempRT = ReactionTime.ReactionTime()
+            rt = tempRT.scoreboard.getPlayerScore(username)
+
+            tempVM = VerbalMemory.VerbalMemory()
+            vm = tempVM.scoreboard.getPlayerScore(username)
+
+            tempNM = NumberMemory.NumberMemory()
+            nm = tempNM.scoreboard.getPlayerScore(username)
+
+            return render_template("scores.html", vm=vm, rt=rt, nm=nm)
+
+        @self.__app.route('/', methods=["GET"])
         def index():
 
             return render_template('index.html')

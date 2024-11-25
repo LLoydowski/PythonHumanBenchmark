@@ -29,6 +29,16 @@ class Scoreboard:
             self.scores[username] = score
             pass
 
+    def getPlayerScore(self, username):
+
+        users = list(self.scores.keys())
+
+        if username not in users:
+            return "N/A"
+
+        if self.scores[username]:
+            return self.scores[username]
+
     def setScore(self, username, score):
         self.scores[username] = score
         self.saveScore()
