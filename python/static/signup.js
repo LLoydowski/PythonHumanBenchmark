@@ -93,10 +93,7 @@ function checkIsPasswordCorrect(){
     return true
 }
 
-const form = document.querySelector("form")
-
-form.addEventListener("submit", async (event) => {
-    event.preventDefault()
+async function signup(){
 
     const username = document.getElementById("username").value.trim()
     const password = document.getElementById("password1").value.trim()
@@ -130,12 +127,19 @@ form.addEventListener("submit", async (event) => {
 
     status = status["status"]
 
-    responseParagraph.textContent = status
+    console.log(status)
+    
+    if(status == ""){
+        alert(status)
+    }
 
     const date = new Date();
     date.setTime(date.getTime() + 24*60*60*1000)
 
 
     document.cookie = `username=${data["name"]}; expires=${date.toUTCString()}`
-   
+}
+
+document.querySelector("form").addEventListener("submit", async (event) => {
+    event.preventDefault()
 })      

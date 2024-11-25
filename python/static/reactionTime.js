@@ -12,6 +12,8 @@ let cEndTime = 0
 
 async function sendRequest(type){
 
+    document.getElementById("game").style.backgroundColor = "red";
+
     let data = {}
 
 
@@ -79,4 +81,8 @@ function logTimes(){
     console.log("End time: " + cEndTime)
     console.log("Time Diff: " + (cEndTime - cStartTime))
     console.log("----------")
+}
+
+function reactionGameStart() {
+    
 }

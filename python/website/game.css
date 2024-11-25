@@ -1,0 +1,241 @@
+@font-face {
+    font-family: Itim;
+    src: url(resources/Itim-Regular.ttf);
+}
+
+:root {
+    --lightBlue: #AFC1D6;
+    --white: #F8F8F8;
+    --purple: #655A7C;
+    --purpleL: #AB92BF;
+    --turquise: #BAE3DC;
+    --gray: #5F6368;
+}
+
+body {
+    margin: 0;
+    font-family: Itim;
+    background-color: var(--white);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.smallSize {
+    font-size: 0.5rem !important;
+}
+
+.mediumSize {
+    font-size: 1rem !important;
+}
+
+.bigSize {
+    font-size: 2rem !important;
+}
+
+.hugeSize {
+    font-size: 4rem !important;
+}
+
+
+/*-----------------------GAME-----------------------*/
+
+.gameContainer {
+    margin-top: 5rem;
+    z-index: 10;
+    width: 100%;
+    height: 30rem;
+    display: flex;
+    justify-content: center;
+}
+
+.game {
+    background-color: var(--lightBlue);
+    width: 60%;
+    height: 100%;
+    box-shadow: 0px 0px 15px 0px rgba(104, 105, 124, 0.53);
+    border: 1px solid rgb(189, 189, 189);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.game input {
+    width: 80%;
+    height: 2rem;
+    border: none;
+    background-color: rgb(227, 228, 230);
+    font-family: Itim;
+    padding: 0.3rem;
+    border-radius: 0.4rem;
+}
+
+.game button {
+    border: none;
+    background-color: var(--purpleL);
+    color: var(--white);
+    font-family: Itim;
+    font-size: 110%;
+}
+
+input:focus {
+    outline: none;
+}
+
+.gameScore {
+    color: var(--white);
+    font-size: 4rem;
+}
+
+/*-----------------------Reaction Time-----------------------*/
+
+
+.reactionGameButton {
+    width: 50%;
+    height: 10rem;
+    transition: transform 0.4s, filter 0.4s;
+    cursor: pointer;
+    border-radius: 0.5rem;
+}
+
+.reactionGameButton:hover{
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+.reactionGameButton p {
+    color: var(--white)
+}
+
+/*-----------------------Number Memory-----------------------*/
+
+.gameNumberMemory {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    padding: 2;
+    width: 100%;
+}
+
+.gameNumber {
+    color: var(--white);
+    height: 10%;
+    user-select: none;
+}
+
+.gameNumberInput {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.gameNumberInput input {
+    height: 4rem;
+    font-size: 3rem;
+    padding: 1rem;
+    text-align: center;
+}
+
+.gameScoreNumber {
+    height: 5%;
+    margin-bottom: -1rem;
+    color: var(--white)
+}
+
+.gameNumberButton {
+    margin-top: 1rem;
+    padding: 1rem;
+    width: 50%;
+    transition: transform 0.4s, filter 0.4s;
+    cursor: pointer;
+    border-radius: 0.3rem;
+}
+
+.gameNumberButton:hover{
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+input[type="number"]::-webkit-inner-spin-button, 
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+
+
+/*-----------------------Verbal Memory-----------------------*/
+
+.gameVerbalMemory{
+    width: 100%;
+    height: 100%;
+}
+
+.gameVerbalLifes {
+    background-color: var(--purpleL);
+    display: flex;
+    justify-content: center;
+    height: 25%;
+}
+
+.gameVerbalLifes img {
+    width: 4rem;
+    transition: transform 0.4s;
+}
+
+.gameVerbalLifes img:nth-child(1):hover {
+    transform: rotate(20deg) scale(1.1);
+}
+
+.gameVerbalLifes img:nth-child(2):hover {
+    transform: scale(1.1);
+}
+
+.gameVerbalLifes img:nth-child(3):hover {
+    transform: rotate(-20deg) scale(1.1);
+}
+
+.gameVerbalWord {
+    text-align: center;
+    color: var(--white);
+}
+
+.gameVerbalButtons {
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.gameVerbalLifesScore {
+    background-color: var(--purpleL);
+    width: 100%;
+    text-align: center;
+    margin-top: 0rem;
+    padding: 0 0 1rem 0;
+    color: var(--gray)
+}
+
+
+.gameVerbalButtons button {
+    width: 30%;
+    height: 4rem;
+    transition: transform 0.4s, filter 0.4s;
+    cursor: pointer;
+    border-radius: 0.3rem;
+}
+
+.gameVerbalButtons button:hover {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}

@@ -1,16 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>JM Benchmarks</title>
+
+    <link rel="icon" href="resources/logo.svg" type="image/svg+xml">
+    <link rel="icon" href="resources/logo.svg" type="image/png">
+    <link rel="icon" href="resources/logo.svg" type="image/x-icon">
+
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="default.css">
 </head>
+
 <body>
-    <form method="post">
-        <input name="data" placeholder="enter data" value="{{ request.form['data']}}">
-        <button type="submit">Ez</button>
-        <img src="https://media.discordapp.net/attachments/839901938413469696/1132796910391001188/jasperCoomer.gif?ex=6731d815&is=67308695&hm=e6d7c70b50026085cfd4a460f5b8fe2ecb75cffe264c84efd8d96e8dc6d26e62&=">
-    </form>
-    <script src="{{url_for('static', filename='script.js')}}"></script>
+
+    <nav>
+        <div class="navTitle">
+            <img src="resources/logo.svg">
+        </div>
+        <div class="navOptions">
+
+
+            <div class="optionsNotLogged">
+                <div class="signUpButton">
+                    <p>Sign Up</p>
+                </div>
+                <div class="LoginButton">
+                    <p>Login</p>
+                </div>
+            </div>
+
+            <div class="optionsLogged hidden">
+                <div class="scoresButton">
+                    <p>Scores</p>
+                </div>
+                <div class="nickButton">
+                    <p id="nick">Nick</p>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+    <div class="banner">
+        <img src="resources/logo.svg">
+        <p>Measure your abilities with brain games and cognitive test</p>
+    </div>
+
+    <div class="gamesContainer">
+        <div class="card">
+            <div class="cardUpper">
+                <h1>VERBAL MEMORY</h1>
+            </div>
+            <div class="cardLower">
+                <img src="resources/note.svg">
+                <img src="resources/brain.svg">
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="cardUpper">
+                <h1>REACTION TIME</h1>
+            </div>
+            <div class="cardLower">
+                <img src="resources/thunder.svg">
+                <img src="resources/mouse.svg">
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="cardUpper">
+                <h1>NUMBER MEMORY</h1>
+            </div>
+            <div class="cardLower">
+                <img src="resources/number.svg">
+                <img src="resources/brain.svg">
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="leftFooter">
+
+            <a href="https://github.com/Martisos">
+                <img src="resources/github.svg">
+                <span>Martin's github here!</span>
+            </a>
+            <a href="https://github.com/LLoydowski">
+                <img src="resources/github.svg">
+                <span>John's github here!</span>
+            </a>
+        </div>
+        <div class="rightFooter">
+            <img src="resources/logo.svg">
+        </div>
+
+    </footer>
+
 </body>
-</html> 
+
+</html>

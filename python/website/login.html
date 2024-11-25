@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>JM Benchmarks</title>
+    <link rel="icon" href="resources/logo.svg" type="image/svg+xml">
+    <link rel="icon" href="resources/logo.svg" type="image/png">
+    <link rel="icon" href="resources/logo.svg" type="image/x-icon">
+
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="default.css">
 </head>
 <body>
+<<<<<<< HEAD
     <form action="/login" method="post">
         <input type="text" name="name" id="username" placeholder="username">
         <input type="password" name="pass" id="password" placeholder="password">
@@ -13,5 +20,59 @@
         <input type="submit">
     </form>
     <script src="{{url_for('static', filename='login.js')}}"></script>
+=======
+    
+ 
+    <nav>
+        <div class="navTitle">
+            <img src="resources/logo.svg">
+        </div>
+        <div class="navOptions">
+
+
+            <div class="optionsNotLogged">
+                <div class="signUpButton">
+                    <p>Sign Up</p>
+                </div>
+                <div class="LoginButton">
+                    <p>Login</p>
+                </div>
+            </div>
+
+            <div class="optionsLogged hidden">
+                <div class="scoresButton">
+                    <p>Scores</p>
+                </div>
+                <div class="nickButton">
+                    <p id="nick">Nick</p>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+    <form class="login">
+
+    <div class="gamesContainer">
+
+        <div class="card">
+            <div class="cardUpper">
+                <h1>LOGIN</h1>
+            </div>
+
+            <div class="cardLower">
+                    <div class="inputContainer">
+                        <input placeholder="Name" type="text">
+                        <input placeholder="Password" type="password">
+                    </div>
+                <button>Sign in</button>
+            </div>
+        </div>
+
+    </div>
+
+    </form>
+
+>>>>>>> website
 </body>
 </html>

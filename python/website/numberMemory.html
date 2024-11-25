@@ -3,30 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <style>
-        .stopTimerBG{
-            background-color: red;
-            width: 100vw;
-            height: 40vh;
-        }
-        .stopTimer{
-            width: 100vw;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 4rem;
-            height: 40vh;
-            background-color: blue;
-        }
-        .hidden{
-            display: none;
-        }
-    </style> -->
-    <form>
-
-    </form>
     <title>JM Benchmarks</title>
+    <link rel="icon" href="resources/logo.svg" type="image/svg+xml">
+    <link rel="icon" href="resources/logo.svg" type="image/png">
+    <link rel="icon" href="resources/logo.svg" type="image/x-icon">
+    
     <link rel="stylesheet" href="game.css">
     <link rel="stylesheet" href="default.css">
 </head>
@@ -37,8 +18,8 @@
             <img src="resources/logo.svg">
         </div>
         <div class="navOptions">
-            
-            
+
+
             <div class="optionsNotLogged">
                 <div class="signUpButton">
                     <p>Sign Up</p>
@@ -47,7 +28,7 @@
                     <p>Login</p>
                 </div>
             </div>
-            
+
             <div class="optionsLogged hidden">
                 <div class="scoresButton">
                     <p>Scores</p>
@@ -56,25 +37,28 @@
                     <p id="nick">Nick</p>
                 </div>
             </div>
-            
+
         </div>
     </nav>
-    
-    <div class="gameContainer">
-        <div class="game" id="game">
-            <p class="gameScore hugeSize">Score</p>
-            <button class="reactionGameButton bigSize" onclick="sendRequest('newGame')"><p>Start</p></button>
 
-            <!-- <div class="stopTimerBG">
-                <button class="hidden stopTimer" id="reactionButton" onclick="sendRequest('clicked')">Click</button>
-            </div> -->
+    <div class="gameContainer">
+        <div class="game">
+            <div class="gameNumberMemory">
+                <p class="gameScoreNumber bigSize">Score: <span id="score">x</span></p>
+                <p class="gameNumber hugeSize">Number</p>
+                <div class="gameNumberInput">
+                    <input type="number">
+                </div>
+                <button class="gameNumberButton">Check</button>
+            </div>
         </div>
     </div>
-    
+
+
+
     <footer>
         
     </footer>
 
-    <script src="{{url_for('static', filename='reactionTime.js')}}"></script>
 </body>
 </html>

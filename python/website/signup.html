@@ -3,16 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benchmark</title>
+    <title>JM Benchmarks</title>
+    <link rel="icon" href="resources/logo.svg" type="image/svg+xml">
+    <link rel="icon" href="resources/logo.svg" type="image/png">
+    <link rel="icon" href="resources/logo.svg" type="image/x-icon">
+    
+    <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="default.css">
 </head>
 <body>
-    <form action="/signup" method="post">
-        <input type="text" placeholder="username" name="username" id="username">
-        <p id="response"></p>
-        <input type="password" placeholder="password" id="password1" name="password">
-        <input type="password" placeholder="repeat password" id="password2">
-        <input type="submit">
-    </form>
+    <nav>
+        <div class="navTitle">
+            <img src="resources/logo.svg">
+        </div>
+        <div class="navOptions">
+
+
+            <div class="optionsNotLogged">
+                <div class="signUpButton">
+                    <p>Sign Up</p>
+                </div>
+                <div class="LoginButton">
+                    <p>Login</p>
+                </div>
+            </div>
+
+            <div class="optionsLogged hidden">
+                <div class="scoresButton">
+                    <p>Scores</p>
+                </div>
+                <div class="nickButton">
+                    <p id="nick">Nick</p>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+    <form class="login">
+
+    <div class="gamesContainer">
+
+        <div class="card">
+            <div class="cardUpper">
+                <h1>SIGN UP</h1>
+            </div>
+
+            <div class="cardLower">
+                    <div class="inputContainer">
+                        <input placeholder="Name" type="text" name="username" id="username">
+                        <input placeholder="Password" type="password" id="password1" name="password">
+                        <input placeholder="Repeat password" type="password" id="password2">
+                    </div>
+                <button onclick="signup()">Sign in</button>
+            </div>
+        </div>
+
+    </div>
+
     <script src="{{url_for('static', filename='signup.js')}}"></script>
 </body>
 </html>
