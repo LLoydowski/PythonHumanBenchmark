@@ -1,20 +1,84 @@
 from flask import Flask, render_template, request, flash, url_for, make_response, redirect
-import VerbalMemory, userManagement, ReactionTime, asyncio, time
+import VerbalMemory, userManagement, ReactionTime, asyncio, time, NumberMemory
 
 class Server:
     def __init__(self):
         self.__app = Flask(__name__, template_folder="./website")
+
         self.__vmGames = {} # username: str, game: VerbalMemory
         self.__rtGames = {}
+        self.__nmGames = {}
+
         self.__userManager = userManagement.userManager()
         
     def run(self):
+        @self.__app.route("/number", methods=["GET", "POST"])
+        def number():
+            username = request.cookies.get("username") 
+
+            if not username:
+                return redirect("/login")
+
+            if(self.__userManager.checkDoesUserExist(username) == False):
+                return render_template("noUser.html", username=username)
+            
+            if username not in list(self.__nmGames.keys()):
+                self.__nmGames[username] = NumberMemory.NumberMemory()
+
+
+            if request.method == "POST":
+                data = request.get_json()
+                action = data["action"]
+
+                if action == "newGame":
+                    self.__nmGames[username].reset()
+
+                    self.__nmGames[username].generateRandomNumber()
+                    self.__nmGames[username].generateSleepTime()
+
+                    randNumb = self.__nmGames[username].getRandomNumber()
+                    sleepTime = self.__nmGames[username].getSleepTime()
+
+                    return{
+                        "randNumb": randNumb,
+                        "sleepTime": sleepTime
+                    }
+                elif action == "guess" and self.__nmGames[username].getStatus() != "lost":
+                    guess = data["guess"]
+                    result = self.__nmGames[username].checkInput(guess)
+
+                    if not result:
+                        self.__nmGames[username].setStatusToLost()
+                        score = self.__nmGames[username].getScore()
+                        self.__nmGames[username].scoreboard.setScore(username, score)
+                        return {
+                            "status": "lost"
+                        }
+
+                    self.__nmGames[username].nextLevel()
+
+                    self.__nmGames[username].generateRandomNumber()
+                    self.__nmGames[username].generateSleepTime()
+
+                    randNumb = self.__nmGames[username].getRandomNumber()
+                    sleepTime = self.__nmGames[username].getSleepTime()
+
+                    return{
+                        "status": "",
+                        "randNumb": randNumb,
+                        "sleepTime": sleepTime
+                    }
+                else:
+                    return {"status": "lost"}
+            
+            return render_template("nm_game.html")
+
+
         @self.__app.route('/reaction', methods=["GET", "POST"])
         def reaction():
             username = request.cookies.get("username") 
 
             if not username:
-                print("test")
                 return redirect("/login")
 
             if(self.__userManager.checkDoesUserExist(username) == False):
@@ -63,7 +127,6 @@ class Server:
             username = request.cookies.get("username") 
 
             if not username:
-                print("test")
                 return redirect("/login")
 
             if(self.__userManager.checkDoesUserExist(username) == False):
@@ -101,11 +164,10 @@ class Server:
                     self.__vmGames[username].seenWord()
                     self.__vmGames[username].generateRandomWord()
                 elif choose == "newGame":
-                    print("Test")
                     self.__vmGames[username].reset()
                     self.__vmGames[username].generateRandomWord()
                 else:
-                    print("Pressed new or seen when lost")
+                    ...
 
             if(status != ""):
                 self.__vmGames[username].scoreboard.setScore(username, score)
@@ -165,14 +227,6 @@ class Server:
 
         @self.__app.route('/', methods=["GET", "POST"])
         def index():
-            if request.method == "POST":
-                data = request.form['data']
-
-                if not data:
-                    flash("Data is required")
-                    return
-                else:
-                    print(f"Data: {data}")
 
             return render_template('index.html')
 
