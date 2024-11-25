@@ -27,24 +27,24 @@
 
     </form>
     <title>JM Benchmarks</title>
-    <link rel="stylesheet" href="game.css">
-    <link rel="stylesheet" href="default.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='game.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='default.css')}}">
 </head>
 <body>
     
     <nav>
-        <div class="navTitle">
-            <img src="resources/logo.svg">
-        </div>
+        <a class="navTitle" href="/">
+            <img src="{{url_for('static', filename='resources/logo.svg')}}">
+        </a>
         <div class="navOptions">
             
             
             <div class="optionsNotLogged">
                 <div class="signUpButton">
-                    <p>Sign Up</p>
+                    <a href="/signup">Sign Up</a>
                 </div>
                 <div class="LoginButton">
-                    <p>Login</p>
+                    <a href="/login">Login</a>
                 </div>
             </div>
             
@@ -62,7 +62,7 @@
     
     <div class="gameContainer">
         <div class="game" id="game">
-            <p class="gameScore hugeSize">Score</p>
+            <p class="gameScore hugeSize" id="score">0 ms</p>
             <button class="reactionGameButton bigSize" onclick="sendRequest('newGame')"><p>Start</p></button>
 
             <!-- <div class="stopTimerBG">

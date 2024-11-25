@@ -62,16 +62,18 @@ class Server:
 
                     randNumb = self.__nmGames[username].getRandomNumber()
                     sleepTime = self.__nmGames[username].getSleepTime()
+                    score = self.__nmGames[username].getScore()
 
                     return{
                         "status": "",
                         "randNumb": randNumb,
-                        "sleepTime": sleepTime
+                        "sleepTime": sleepTime,
+                        "score": score
                     }
                 else:
                     return {"status": "lost"}
             
-            return render_template("nm_game.html")
+            return render_template("numberMemory.html")
 
 
         @self.__app.route('/reaction', methods=["GET", "POST"])
@@ -118,7 +120,7 @@ class Server:
 
                     self.__rtGames[username].scoreboard.setScore(username, cReaction)
                     
-                    return {"status": f"Your reaction time is {cReaction}"}
+                    return {"status": cReaction}
 
             return render_template("reactionTime.html")
         
@@ -150,7 +152,7 @@ class Server:
             score = self.__vmGames[username].getScore()
             status = self.__vmGames[username].isGameFinnished()
 
-            response = render_template('vm_game.html', word=word, lives=lives, score=score, status=status)
+            response = render_template('verbalMemory.html', word=word, lives=lives, score=score, status=status)
 
             
             

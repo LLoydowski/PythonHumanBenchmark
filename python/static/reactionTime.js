@@ -1,4 +1,5 @@
-const reactionButton = document.getElementById("reactionButton")
+const reactionButton = document.querySelector(".reactionGameButton")
+const scorePar = document.getElementById("score")
 
 document.querySelector("form").addEventListener("submit", (e) => {
     e.preventDefault()
@@ -19,10 +20,13 @@ async function sendRequest(type){
 
     if(type == "newGame"){
         data["action"] = "newGame" 
-        reactionButton.classList.add("hidden")
+        // reactionButton.classList.add("hidden")
     }else{
         data["action"] = "clicked"
         cEndTime = new Date().getTime()
+        document.getElementById("game").style.backgroundColor = "var(--lightBlue)";
+        reactionButton.setAttribute("onclick", 'sendRequest("newGame")')
+        reactionButton.textContent = "Start"
     }
     
     let response = await Promise.resolve(fetch(window.location.href, {
@@ -38,7 +42,10 @@ async function sendRequest(type){
     if(response["sStartTime"]){
         sStartTime = Math.floor(response["sStartTime"] * 1000)
         cStartTime = new Date().getTime()
-        reactionButton.classList.remove("hidden")
+        // reactionButton.classList.remove("hidden")
+        document.getElementById("game").style.backgroundColor = "rgb(41, 255, 84)";
+        reactionButton.setAttribute("onclick", 'sendRequest("clicked")')
+        reactionButton.textContent = "Click me!"
     }
     
     if(response["sEndTime"]){
@@ -46,7 +53,6 @@ async function sendRequest(type){
     }
 
     if(response["sEndTime"]){
-        logTimes()
         let status = await Promise.resolve(fetch(window.location.href, {
             method: "post",
             body: JSON.stringify({
@@ -64,9 +70,13 @@ async function sendRequest(type){
         .then(res => res.json())
         .then(json => json["status"])
 
-        alert(status)
+        if(status == "You either have bad internet connection or you cheated. Therefore your score won't be saved. Sorry!"){
+            alert(status)
+        }
 
-        reactionButton.classList.add("hidden")
+        scorePar.textContent = status + " ms"
+
+        // reactionButton.classList.add("hidden")
     }
     
 }

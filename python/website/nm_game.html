@@ -37,12 +37,14 @@
         <p id="randNumberPar" class="hidden">NUMBER</p>
         <input type="number" id="guessInput">
         <button onclick="guess()">Enter</button>
+
         <span class="timer">
             <span class="bar"></span>
         </span>
+        
         <p id="status"></p>
         <button onclick="newGame()">New Game</button>
     </div>
-    <script src="{{url_for('static', filename='nm_game.js')}}"></script>
+
 </body>
 </html>

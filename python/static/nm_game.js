@@ -1,6 +1,8 @@
 const randNumberPar = document.getElementById("randNumberPar")
 const statusPar = document.getElementById("status")
-const timerBar = document.querySelector(".bar")
+const timerBar = document.querySelector(".timerBar")
+const guessedNumberInput = document.getElementById("guessInput")
+const scorePar = document.getElementById("score")
 
 document.querySelector("input").addEventListener("keypress", (e) => {
     if(e.key == "Enter"){
@@ -13,6 +15,8 @@ function sleep(ms) {
 }
 
 async function newGame(){
+    scorePar.textContent = 1
+
     gameInfo = await Promise.resolve(fetch(window.location.href, {
         method: "post",
         mode: "cors",
@@ -23,44 +27,50 @@ async function newGame(){
     })
     .then(response => response.json()))
 
-    statusPar.textContent = ""
+    guessedNumberInput.value = ''
 
     randNumberPar.textContent = gameInfo["randNumb"]
-    randNumberPar.classList.remove("hidden")
-
+    randNumberPar.classList.remove("notDisplayed")
+    guessedNumberInput.style.zIndex = "0"
+    
     timerBar.style.animation = `bar ${gameInfo["sleepTime"]}s`
-
+    
     await sleep(gameInfo["sleepTime"] * 1000)
-
+    
     timerBar.style.animation = ''
-    randNumberPar.classList.add("hidden")
+    guessedNumberInput.style.zIndex = "10"
+    randNumberPar.classList.add("notDisplayed")
 }
 
 async function guess(){
-    const guessedNumber = Number(document.getElementById("guessInput").value)
-
+    
     gameInfo = await Promise.resolve(fetch(window.location.href, {
         method: "post",
         mode: "cors",
-        body: JSON.stringify({"action": "guess", "guess": guessedNumber}),
+        body: JSON.stringify({"action": "guess", "guess": Number(guessedNumberInput.value)}),
         headers: new Headers({
             "Content-Type": "application/json"
         })
     })
     .then(response => response.json()))
-
+    
     if(gameInfo["status"] == "lost"){
-        statusPar.textContent = "You have lost!"
+        alert(gameInfo["status"])
         return
     }
-
+    guessedNumberInput.value = ''
+    scorePar.textContent = gameInfo["score"]
+    
     randNumberPar.textContent = gameInfo["randNumb"]
-    randNumberPar.classList.remove("hidden")
-
+    randNumberPar.classList.remove("notDisplayed")
+    guessedNumberInput.style.zIndex = "0"
+    
     timerBar.style.animation = `bar ${gameInfo["sleepTime"]}s`
-
+    
     await sleep(gameInfo["sleepTime"] * 1000)
-
+    
     timerBar.style.animation = ''
-    randNumberPar.classList.add("hidden")
+    guessedNumberInput.style.zIndex = "10"
+    randNumberPar.classList.add("notDisplayed")
+    
 }

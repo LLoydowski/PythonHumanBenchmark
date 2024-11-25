@@ -4,28 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JM Benchmarks</title>
-    <link rel="icon" href="resources/logo.svg" type="image/svg+xml">
-    <link rel="icon" href="resources/logo.svg" type="image/png">
-    <link rel="icon" href="resources/logo.svg" type="image/x-icon">
+    <link rel="icon" href="{{url_for('static', filename='resources/logo.svg')}}" type="image/svg+xml">
+    <link rel="icon" href="{{url_for('static', filename='resources/logo.svg')}}" type="image/png">
+    <link rel="icon" href="{{url_for('static', filename='resources/logo.svg')}}" type="image/x-icon">
     
-    <link rel="stylesheet" href="game.css">
-    <link rel="stylesheet" href="default.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='game.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='default.css')}}">
 </head>
 <body>
     
     <nav>
-        <div class="navTitle">
-            <img src="resources/logo.svg">
-        </div>
+        <a class="navTitle" href="/">
+            <img src="{{url_for('static', filename='resources/logo.svg')}}">
+        </a>
         <div class="navOptions">
 
 
             <div class="optionsNotLogged">
                 <div class="signUpButton">
-                    <p>Sign Up</p>
+                    <a href="/signup">Sign Up</a>
                 </div>
                 <div class="LoginButton">
-                    <p>Login</p>
+                    <a href="/login">Login</a>
                 </div>
             </div>
 
@@ -44,12 +44,16 @@
     <div class="gameContainer">
         <div class="game">
             <div class="gameNumberMemory">
-                <p class="gameScoreNumber bigSize">Score: <span id="score">x</span></p>
-                <p class="gameNumber hugeSize">Number</p>
+                <p class="gameScoreNumber bigSize">Score: <span id="score">1</span></p>
+                <p class="gameNumber hugeSize notDisplayed" id="randNumberPar">Number</p>
                 <div class="gameNumberInput">
-                    <input type="number">
+                    <input type="number" id="guessInput">
+                    <div class="timer">
+                        <div class="timerBar"></div>
+                    </div>
                 </div>
-                <button class="gameNumberButton">Check</button>
+                <button class="gameNumberButton" onclick="guess()">Check</button>
+                <button class="gameNumberButton" onclick="newGame()">New Game</button>
             </div>
         </div>
     </div>
@@ -60,5 +64,6 @@
         
     </footer>
 
+    <script src="{{url_for('static', filename='nm_game.js')}}"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@ import time, random
 class NumberMemory(Game):
     def __init__(self):
         super().__init__("data/number_memory.txt")
-        self.score = 1
+        self.__score = 1
         self.__status = ""
         self.__randomNumber = 0
     

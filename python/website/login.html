@@ -4,41 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JM Benchmarks</title>
-    <link rel="icon" href="resources/logo.svg" type="image/svg+xml">
-    <link rel="icon" href="resources/logo.svg" type="image/png">
-    <link rel="icon" href="resources/logo.svg" type="image/x-icon">
+    <link rel="icon" href="{{url_for('static', filename='resources/logo.svg')}}" type="image/svg+xml">
+    <link rel="icon" href="{{url_for('static', filename='resources/logo.svg')}}" type="image/png">
+    <link rel="icon" href="{{url_for('static', filename='resources/logo.svg')}}" type="image/x-icon">
 
-    <link rel="stylesheet" href="login.css">
-    <link rel="stylesheet" href="default.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='login.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='default.css')}}">
 </head>
 <body>
-<<<<<<< HEAD
-    <form action="/login" method="post">
-        <input type="text" name="name" id="username" placeholder="username">
-        <input type="password" name="pass" id="password" placeholder="password">
-        <p id="status"></p>
-        <input type="submit">
-    </form>
-    <script src="{{url_for('static', filename='login.js')}}"></script>
-=======
-    
- 
+
     <nav>
-        <div class="navTitle">
-            <img src="resources/logo.svg">
-        </div>
+        <a class="navTitle" href="/">
+            <img src="{{url_for('static', filename='resources/logo.svg')}}">
+        </a>
         <div class="navOptions">
-
-
+            
+            
             <div class="optionsNotLogged">
                 <div class="signUpButton">
-                    <p>Sign Up</p>
+                    <a href="/signup">Sign Up</a>
                 </div>
                 <div class="LoginButton">
-                    <p>Login</p>
+                    <a href="/login">Login</a>
                 </div>
             </div>
-
+            
             <div class="optionsLogged hidden">
                 <div class="scoresButton">
                     <p>Scores</p>
@@ -47,32 +37,32 @@
                     <p id="nick">Nick</p>
                 </div>
             </div>
-
+            
         </div>
     </nav>
-
-    <form class="login">
-
-    <div class="gamesContainer">
-
-        <div class="card">
-            <div class="cardUpper">
-                <h1>LOGIN</h1>
-            </div>
-
-            <div class="cardLower">
+    
+    <form class="login" action="/login" method="post">
+        
+        <div class="gamesContainer">
+            
+            <div class="card">
+                <div class="cardUpper">
+                    <h1>LOGIN</h1>
+                </div>
+                
+                <div class="cardLower">
                     <div class="inputContainer">
-                        <input placeholder="Name" type="text">
-                        <input placeholder="Password" type="password">
+                        <input placeholder="Name" type="text" name="name" id="username">
+                        <input placeholder="Password" type="password" name="pass" id="password">
                     </div>
-                <button>Sign in</button>
+                    <button>Sign in</button>
+                </div>
             </div>
+            
         </div>
-
-    </div>
-
+        
     </form>
-
->>>>>>> website
+    
+    <script src="{{url_for('static', filename='login.js')}}"></script>
 </body>
 </html>

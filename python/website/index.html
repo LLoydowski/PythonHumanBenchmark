@@ -6,29 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JM Benchmarks</title>
 
-    <link rel="icon" href="resources/logo.svg" type="image/svg+xml">
-    <link rel="icon" href="resources/logo.svg" type="image/png">
-    <link rel="icon" href="resources/logo.svg" type="image/x-icon">
+    <link rel="icon" href="{{url_for('static', filename='resources/logo.svg')}}" type="image/svg+xml">
+    <link rel="icon" href="{{url_for('static', filename='resources/logo.svg')}}" type="image/png">
+    <link rel="icon" href="{{url_for('static', filename='resources/logo.svg')}}" type="image/x-icon">
 
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="default.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='index.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='default.css')}}">
 </head>
 
 <body>
 
     <nav>
-        <div class="navTitle">
-            <img src="resources/logo.svg">
-        </div>
+        <a class="navTitle" href="/">
+            <img src="{{url_for('static', filename='resources/logo.svg')}}">
+        </a>
         <div class="navOptions">
 
 
             <div class="optionsNotLogged">
                 <div class="signUpButton">
-                    <p>Sign Up</p>
+                    <a href="/signup">Sign Up</a>
                 </div>
                 <div class="LoginButton">
-                    <p>Login</p>
+                    <a href="/login">Login</a>
                 </div>
             </div>
 
@@ -45,56 +45,56 @@
     </nav>
 
     <div class="banner">
-        <img src="resources/logo.svg">
+        <img src="{{url_for('static', filename='resources/logo.svg')}}">
         <p>Measure your abilities with brain games and cognitive test</p>
     </div>
 
     <div class="gamesContainer">
-        <div class="card">
+        <a class="card" href="/verbal">
             <div class="cardUpper">
                 <h1>VERBAL MEMORY</h1>
             </div>
             <div class="cardLower">
-                <img src="resources/note.svg">
-                <img src="resources/brain.svg">
+                <img src="{{url_for('static', filename='resources/note.svg')}}">
+                <img src="{{url_for('static', filename='resources/brain.svg')}}">
             </div>
-        </div>
+        </a>
 
-        <div class="card">
+        <a class="card" href="/reaction">
             <div class="cardUpper">
                 <h1>REACTION TIME</h1>
             </div>
             <div class="cardLower">
-                <img src="resources/thunder.svg">
-                <img src="resources/mouse.svg">
+                <img src="{{url_for('static', filename='resources/thunder.svg')}}">
+                <img src="{{url_for('static', filename='resources/mouse.svg')}}">
             </div>
-        </div>
+        </a>
 
-        <div class="card">
+        <a class="card" href="/number">
             <div class="cardUpper">
                 <h1>NUMBER MEMORY</h1>
             </div>
             <div class="cardLower">
-                <img src="resources/number.svg">
-                <img src="resources/brain.svg">
+                <img src="{{url_for('static', filename='resources/number.svg')}}">
+                <img src="{{url_for('static', filename='resources/brain.svg')}}">
             </div>
-        </div>
+        </a>
     </div>
 
     <footer>
         <div class="leftFooter">
 
             <a href="https://github.com/Martisos">
-                <img src="resources/github.svg">
+                <img src="{{url_for('static', filename='resources/github.svg')}}">
                 <span>Martin's github here!</span>
             </a>
             <a href="https://github.com/LLoydowski">
-                <img src="resources/github.svg">
+                <img src="{{url_for('static', filename='resources/github.svg')}}">
                 <span>John's github here!</span>
             </a>
         </div>
         <div class="rightFooter">
-            <img src="resources/logo.svg">
+            <img src="{{url_for('static', filename='resources/logo.svg')}}">
         </div>
 
     </footer>
