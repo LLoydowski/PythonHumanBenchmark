@@ -74,6 +74,10 @@ body {
     margin-top: 5rem
 }
 
+.gamesContainer > :last-child {
+    margin-bottom: 3rem;
+}
+
 .card {
     height: 25rem;
     display: flex;

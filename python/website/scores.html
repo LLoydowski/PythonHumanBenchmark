@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JM Benchmarks</title>
+    <link rel="icon" href="resources/logo.svg" type="image/svg+xml">
+    <link rel="icon" href="resources/logo.svg" type="image/png">
+    <link rel="icon" href="resources/logo.svg" type="image/x-icon">
+
+    <link rel="stylesheet" href="scores.css">
+    <link rel="stylesheet" href="default.css">
+</head>
+<body>
+    
+ 
+    <nav>
+        <div class="navTitle">
+            <img src="resources/logo.svg">
+        </div>
+        <div class="navOptions">
+
+
+            <div class="optionsNotLogged">
+                <div class="signUpButton">
+                    <p>Sign Up</p>
+                </div>
+                <div class="LoginButton">
+                    <p>Login</p>
+                </div>
+            </div>
+
+            <div class="optionsLogged hidden">
+                <div class="scoresButton">
+                    <p>Scores</p>
+                </div>
+                <div class="nickButton">
+                    <p id="nick">Nick</p>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+    <div class="scoreboarContainer">
+        <table>
+            <tr>
+                <th>
+                    <img src="resources/note.svg">
+                    <img src="resources/brain.svg">
+                    <br>
+                    <span>Verbal Memory</span>
+                </th>
+                <th>
+                    <img src="resources/thunder.svg">
+                    <img src="resources/mouse.svg">
+                    <br>
+                    <span>Reaction Time</span>
+                </th>
+                <th>
+                    <img src="resources/number.svg">
+                    <img src="resources/brain.svg">
+                    <br>
+                    <span>Verbal Memory</span>
+                </th>
+            </tr>
+            <tr>
+                <th class="bestScoreTh">
+                    <span class="bestScoreText">BEST SCORE:</span>
+                    <br>
+                    <span id="bestScoreVerbal">X</span>
+                </th>
+                <th class="bestScoreTh">
+                    <span class="bestScoreText">BEST SCORE:</span>
+                    <br>
+                    <span id="bestScoreReaction">X</span>
+                    <span>ms</span>
+                </th>
+                <th class="bestScoreTh">
+                    <span class="bestScoreText">BEST SCORE:</span>
+                    <br>
+                    <span id="bestScoreNumber">X</span>
+                </th>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>
