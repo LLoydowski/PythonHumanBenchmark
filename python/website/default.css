@@ -126,7 +126,6 @@ nav {
 
 footer {
     background-color: var(--purple);
-    height: 10rem;
     margin-top: auto;
     display: flex;
     justify-content: space-between;
