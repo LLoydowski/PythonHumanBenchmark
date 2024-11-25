@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+    font-family: Itim;
+    background-color: var(--white);
+}
+
+
+/*-------------------------Table-------------------------*/
+.scoreboarContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6rem;
+}
+
+table {
+    background-color: var(--lightBlue);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0px 0px 15px 0px rgba(66, 68, 90, 0.53);
+}
+
+table,
+th {
+    border: 3px solid var(--gray);
+    border-collapse: collapse;
+}
+
+th {
+    padding: 1rem;
+    font-size: 1.2rem;
+    color: var(--gray)
+}
+
+th img {
+    width: 30%;
+}
+
+.bestScoreTh {
+    width: 15rem;
+    height: 10rem;
+}
+
+.bestScoreText {
+    font-size: 1.5rem;
+}
+
+#bestScoreVerbal,
+#bestScoreReaction,
+#bestScoreNumber {
+    font-size: 2.5rem;
+    color: black;
+    display: inline-block;
+    animation: pulsowanie 2s infinite ease-in-out;
+}
+
+#bestScoreReaction {
+    animation-delay: 0.3s;
+}
+#bestScoreNumber {
+    animation-delay: 0.6s;
+}
+
+
+@keyframes pulsowanie {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.5);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
