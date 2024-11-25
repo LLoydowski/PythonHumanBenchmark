@@ -246,4 +246,4 @@ class Server:
 
             return render_template('index.html')
 
-        self.__app.run(host="0.0.0.0", port=85, debug=True)
+        self.__app.run(host="0.0.0.0", port=85, debug=True, use_reloader=False)

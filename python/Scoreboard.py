@@ -26,8 +26,18 @@ class Scoreboard:
             
             username = words[0]
             score = words[1]
+
+            if username is None:
+                continue
+            if score is None:
+                continue
+
             self.scores[username] = score
             pass
+
+    def printScores(self):
+        for player in self.scores:
+            print(F"{player}: {self.scores[player]}")
 
     def getPlayerScore(self, username):
 
@@ -47,5 +57,3 @@ class Scoreboard:
         file = open(self.fileName, "w")
         file.write(self.scoresToString())
     
-    def printScores(self):
-        print("Scores:\n.......")

@@ -1,5 +1,3 @@
-import Scoreboard
-
 class userManager:
     def __init__(self, usersFilePath = "./data/users.txt"):
         self.__usersFilePath = usersFilePath

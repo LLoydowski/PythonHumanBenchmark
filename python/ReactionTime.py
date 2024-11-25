@@ -68,7 +68,8 @@ class ReactionTime(Game):
             if self.checkIsTimeCheated():
                 print("You cheated!")
             else:
-                print(f"Your reaction time was: {self.__reaction_time_ms:.0f} ms")
+                print(f"Your reaction time was: {self.__reactionTime:.0f} ms")
+                self.__scores.append(self.__reactionTime)
 
     def checkIsTimeCheated(self) -> bool:
         if self.__reactionTime < 50:

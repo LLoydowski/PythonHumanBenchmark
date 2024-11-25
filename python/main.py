@@ -1,26 +1,75 @@
 from NumberMemory import *
 from ReactionTime import *
-from server import *
+from VerbalMemory import *
+from Server import *
 
-def startServer():
-    server = Server()
-    server.run()
+def clear():
+    if platform.system() == 'Windows':
+        os.system('cls')
+    else:
+        os.system('clear')
 
-startServer()
 
-# isCLI = int(input("1. CLI\n2. Website\n"))
-# if isCLI:
-#     ...
-# else:
-#     startServer()
+isServeRunning = False
+isCLIRunning = False
 
-# user_choice = int(input("1. ReactionTime\n2. NumberMemory\n"))
-# game = ReactionTime()
+def CLI():
+    clear()
+    user_choice = input("1. ReactionTime\n2. Number Memory\n3. Verbal Memory\n4. Scores\n> ")
 
-# if user_choice == 1:
-#     game = ReactionTime()
-# elif user_choice == 2:
-#     game = NumberMemory()
-    
-# game.play()
-# game.showScores()
+    while user_choice != "1" and user_choice != "2" and user_choice != "3" and user_choice != "4":
+        clear()
+        user_choice = input("1. ReactionTime\n2. Number Memory\n3. Verbal Memory\n4. Scores\n> ")
+
+    if user_choice == "1":
+        game = ReactionTime.ReactionTime()
+        game.play()
+        return
+    elif user_choice == "2":
+        game = NumberMemory.NumberMemory()
+        game.play()
+        return
+    elif user_choice == "3":
+        game = VerbalMemory.VerbalMemory()
+        game.play()
+        return
+    elif user_choice == "4":
+        clear()
+        rt = ReactionTime.ReactionTime()
+        nm = NumberMemory.NumberMemory()
+        vm = VerbalMemory.VerbalMemory()
+
+        print("---Reaction Time---")
+        rt.scoreboard.printScores()
+        print("")
+        print("---Number Memory---")
+        nm.scoreboard.printScores()
+        print("")
+        print("---Verbal Memory---")
+        vm.scoreboard.printScores()
+        print("")
+
+        return
+        
+
+def runMain(isCLI):
+    clear()
+
+
+    if isCLI == "1":
+        isCLIRunning = True
+        CLI()
+        return
+    if isCLI == "2":
+        s = Server()
+        isServeRunning = True
+        s.run() 
+        return
+
+        
+if __name__ == "__main__":
+
+    while not isCLIRunning or not isServeRunning:
+        clear()
+        isCLI = input("1. CLI\n2. Website\n> ")
+        runMain(isCLI)

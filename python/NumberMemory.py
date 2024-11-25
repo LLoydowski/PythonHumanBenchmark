@@ -7,6 +7,7 @@ class NumberMemory(Game):
         self.__score = 1
         self.__status = ""
         self.__randomNumber = 0
+        self.__sleepTime = 1
     
     def reset(self):
         self.__score = 1
@@ -48,7 +49,7 @@ class NumberMemory(Game):
             print("Remember that number:")
             print(self.__randomNumber)
 
-            self.generateRandomNumber()
+            self.generateSleepTime()
             time.sleep(self.__sleepTime)
             
             self.clear()
@@ -60,10 +61,10 @@ class NumberMemory(Game):
             if int(userNumber) == self.__randomNumber:
                 self.nextLevel()
             else:
+                print(f"Wrong, correct number: {self.__randomNumber}")
+                print(f"Your score was {self.__score}")
                 self.__status = "lost"
     
-    def printScore(self):
-        print(f"Your score: {self.__score}!")
 
 
     def play(self):
@@ -72,5 +73,4 @@ class NumberMemory(Game):
         username = input("> ")
 
         self.rememberRound()
-        self.printScore()
         self.scoreboard.setScore(username, self.score)
