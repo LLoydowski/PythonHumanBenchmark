@@ -33,6 +33,7 @@ async function sendRequest(type){
     newGameButton.classList.add("hidden")
     
     if(gameInfo["status"] != ""){
+        setLivesColor(0)
         alert(gameInfo["status"])
         newButton.classList.add("hidden")
         seenButton.classList.add("hidden")
@@ -48,6 +49,7 @@ function setLivesColor(lives){
             life1.classList.add("disabledHeart")
             life2.classList.add("disabledHeart")
             life3.classList.add("disabledHeart")
+            break
         case 1:
             life1.classList.remove("disabledHeart")
             life2.classList.add("disabledHeart")

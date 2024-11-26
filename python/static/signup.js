@@ -129,8 +129,9 @@ async function signup(){
 
     console.log(status)
     
-    if(status == ""){
+    if(status != "User created succefully"){
         alert(status)
+        return
     }
 
     const date = new Date();
@@ -138,6 +139,8 @@ async function signup(){
 
 
     document.cookie = `username=${data["name"]}; expires=${date.toUTCString()}`
+
+    window.location.replace("/")
 }
 
 document.querySelector("form").addEventListener("submit", async (event) => {

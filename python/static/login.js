@@ -27,7 +27,10 @@ form.addEventListener("submit", async (event) => {
 
     if(status != ""){
         alert(status)
+        return
     }
+
+
 
     const date = new Date();
     date.setTime(date.getTime() + 24*60*60*1000)
@@ -35,4 +38,6 @@ form.addEventListener("submit", async (event) => {
     if(status == ""){
         document.cookie = `username=${data["name"]}; expires=${date.toUTCString()}`
     }
+    
+    window.location.replace("/")
 })
