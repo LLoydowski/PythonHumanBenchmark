@@ -1,10 +1,6 @@
 const reactionButton = document.querySelector(".reactionGameButton")
 const scorePar = document.getElementById("score")
 
-document.querySelector("form").addEventListener("submit", (e) => {
-    e.preventDefault()
-})
-
 let sStartTime = 0
 let sEndTime = 0
 
@@ -20,7 +16,6 @@ async function sendRequest(type){
 
     if(type == "newGame"){
         data["action"] = "newGame" 
-        // reactionButton.classList.add("hidden")
     }else{
         data["action"] = "clicked"
         cEndTime = new Date().getTime()
@@ -75,8 +70,6 @@ async function sendRequest(type){
         }
 
         scorePar.textContent = status + " ms"
-
-        // reactionButton.classList.add("hidden")
     }
     
 }
