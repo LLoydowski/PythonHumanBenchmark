@@ -57,13 +57,18 @@ class NumberMemory(Game):
             print("What was the number?")
 
             userNumber = input("Your answer: ")
-
-            if int(userNumber) == self.__randomNumber:
-                self.nextLevel()
-            else:
-                print(f"Wrong, correct number: {self.__randomNumber}")
-                print(f"Your score was {self.__score}")
-                self.__status = "lost"
+            try:
+                if int(userNumber) == self.__randomNumber:
+                    self.nextLevel()
+                else:
+                    print(f"Wrong, correct number: {self.__randomNumber}")
+                    print(f"Your score was {self.__score}")
+                    self.__status = "lost"
+            
+            except ValueError:
+                print("You entered not a number.")
+            except:
+                print("Something went wrong.")
     
 
 

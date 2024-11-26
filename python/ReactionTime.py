@@ -4,7 +4,6 @@ import time, random
 class ReactionTime(Game):
     def __init__(self):
         super().__init__("data/reaction_time.txt")
-        self.__best_time_ms = float('inf')
         self.__scores = []
         self.__startTime = 0
         self.__stopTime = 0
@@ -90,7 +89,7 @@ class ReactionTime(Game):
             self.reactionRound()
         
         print(f"Your average score: {self.averageScore()}")
-        self.scoreboard.setScore(username ,self.__best_time_ms)
+        self.scoreboard.setScore(username, self.averageScore())
 
 # a = ReactionTime()
 # a.play()

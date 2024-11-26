@@ -9,10 +9,6 @@ def clear():
     else:
         os.system('clear')
 
-
-isServeRunning = False
-isCLIRunning = False
-
 def CLI():
     clear()
     user_choice = input("1. ReactionTime\n2. Number Memory\n3. Verbal Memory\n4. Scores\n> ")
@@ -50,26 +46,25 @@ def CLI():
         print("")
 
         return
-        
 
-def runMain(isCLI):
+
+def run():
     clear()
 
+    isCLI = input("1. CLI,\n2. Website\n> ")
 
-    if isCLI == "1":
-        isCLIRunning = True
-        CLI()
-        return
-    if isCLI == "2":
-        s = Server()
-        isServeRunning = True
-        s.run() 
-        return
+    while isCLI != "1" or isCLI != "2":
+        if isCLI == "1":
+            CLI()
+            return
+            
+        if isCLI == "2":
+            clear()
+            s = Server()
+            s.run() 
+            return
 
         
 if __name__ == "__main__":
+    run()
 
-    while not isCLIRunning or not isServeRunning:
-        clear()
-        isCLI = input("1. CLI\n2. Website\n> ")
-        runMain(isCLI)
